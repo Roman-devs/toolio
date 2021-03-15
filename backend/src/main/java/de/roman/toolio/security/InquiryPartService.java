@@ -18,6 +18,6 @@ public class InquiryPartService {
     }
 
     public List<InquiryPart> listInquiryParts() {
-        return null;
+        return inquiryPartDb.findAll();
     }
 }
