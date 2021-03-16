@@ -32,6 +32,4 @@ public class InquiryPartController {
     public void deleteInquiry(@PathVariable String id){
         inquiryPartService.deleteInquiryFromDatabase(id);
     }
-
-
 }

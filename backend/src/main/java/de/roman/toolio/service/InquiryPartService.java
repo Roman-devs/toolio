@@ -34,6 +34,6 @@ public class InquiryPartService {
     }
 
     public void deleteInquiryFromDatabase(String inquiryId) {
-    inquiryPartDb.deleteById(inquiryId);
+        inquiryPartDb.deleteById(inquiryId);
     }
 }
