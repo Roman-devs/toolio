@@ -28,5 +28,10 @@ public class InquiryPartController {
         return this.inquiryPartService.addInquiry(inquiryPartToBeAdded);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteInquiry(@PathVariable String id){
+        inquiryPartService.deleteInquiryFromDatabase(id);
+    }
+
 
 }

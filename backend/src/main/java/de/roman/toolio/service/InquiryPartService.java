@@ -32,4 +32,8 @@ public class InquiryPartService {
         // Add the inquiryPart to the MongoDB
         return inquiryPartDb.save(inquiryPartToBeAdded);
     }
+
+    public void deleteInquiryFromDatabase(String inquiryId) {
+    inquiryPartDb.deleteById(inquiryId);
+    }
 }
