@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="inquiryParts")
 public class InquiryPart {
     // Specification for the user card
-    @Id
     private String partName;
     private String partDescription;
     // Dimensions
