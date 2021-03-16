@@ -1,12 +1,10 @@
 package de.roman.toolio.controller;
 
 import de.roman.toolio.model.InquiryPart;
-import de.roman.toolio.security.InquiryPartService;
+import de.roman.toolio.service.InquiryPartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -24,5 +22,11 @@ public class InquiryPartController {
     public List<InquiryPart> listInquiryParts() {
         return inquiryPartService.listInquiryParts();
     }
+
+    @PostMapping
+    public InquiryPart addInquiry(@RequestBody InquiryPart inquiryPartToBeAdded){
+        return this.inquiryPartService.addInquiry(inquiryPartToBeAdded);
+    }
+
 
 }

@@ -12,6 +12,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection="inquiryParts")
 public class InquiryPart {
+
+    @Id
+    private String uuid;
     // Specification for the user card
     private String partName;
     private String partDescription;
