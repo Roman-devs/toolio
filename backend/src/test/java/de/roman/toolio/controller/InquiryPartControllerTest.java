@@ -15,14 +15,11 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InquiryPartControllerTest {
@@ -57,21 +54,21 @@ public class InquiryPartControllerTest {
                 .uuid("123")
                 .partName("foo")
                 .partDescription("bar")
-                .lengthPart("25")
-                .widthPart("25")
-                .heightPart("25")
-                .materialPart("S355")
-                .amountPart("5")
+                .length("25")
+                .width("25")
+                .height("25")
+                .material("S355")
+                .orderAmount("5")
                 .build());
         inquiryPartDb.save(InquiryPart.builder()
                 .uuid("345")
                 .partName("so")
                 .partDescription("cool")
-                .lengthPart("35")
-                .widthPart("35")
-                .heightPart("35")
-                .materialPart("S355")
-                .amountPart("3")
+                .length("35")
+                .width("35")
+                .height("35")
+                .material("S355")
+                .orderAmount("3")
                 .build());
         // When
         ResponseEntity<InquiryPart[]> response = testRestTemplate.getForEntity(getUrl(), InquiryPart[].class);
@@ -82,21 +79,21 @@ public class InquiryPartControllerTest {
                         .uuid("123")
                         .partName("foo")
                         .partDescription("bar")
-                        .lengthPart("25")
-                        .widthPart("25")
-                        .heightPart("25")
-                        .materialPart("S355")
-                        .amountPart("5")
+                        .length("25")
+                        .width("25")
+                        .height("25")
+                        .material("S355")
+                        .orderAmount("5")
                         .build(),
                 InquiryPart.builder()
                         .uuid("345")
                         .partName("so")
                         .partDescription("cool")
-                        .lengthPart("35")
-                        .widthPart("35")
-                        .heightPart("35")
-                        .materialPart("S355")
-                        .amountPart("3")
+                        .length("35")
+                        .width("35")
+                        .height("35")
+                        .material("S355")
+                        .orderAmount("3")
                         .build()))
         ;
     }
@@ -110,11 +107,11 @@ public class InquiryPartControllerTest {
                         .uuid("345")
                         .partName("so")
                         .partDescription("cool")
-                        .lengthPart("35")
-                        .widthPart("35")
-                        .heightPart("35")
-                        .materialPart("S355")
-                        .amountPart("3")
+                        .length("35")
+                        .width("35")
+                        .height("35")
+                        .material("S355")
+                        .orderAmount("3")
                         .build()
         );
         // WHEN
@@ -128,11 +125,11 @@ public class InquiryPartControllerTest {
                 .uuid("345")
                 .partName("so")
                 .partDescription("cool")
-                .lengthPart("35")
-                .widthPart("35")
-                .heightPart("35")
-                .materialPart("S355")
-                .amountPart("3")
+                .length("35")
+                .width("35")
+                .height("35")
+                .material("S355")
+                .orderAmount("3")
                 .build(), postResponse.getBody());
     }
 
@@ -144,22 +141,22 @@ public class InquiryPartControllerTest {
                 .uuid("345")
                 .partName("so")
                 .partDescription("cool")
-                .lengthPart("35")
-                .widthPart("35")
-                .heightPart("35")
-                .materialPart("S355")
-                .amountPart("3")
+                .length("35")
+                .width("35")
+                .height("35")
+                .material("S355")
+                .orderAmount("3")
                 .build());
         // WHEN
         HttpEntity<InquiryPart> entity = new HttpEntity<>(InquiryPart.builder()
                 .uuid("345")
                 .partName("so")
                 .partDescription("cool")
-                .lengthPart("35")
-                .widthPart("35")
-                .heightPart("35")
-                .materialPart("S355")
-                .amountPart("3")
+                .length("35")
+                .width("35")
+                .height("35")
+                .material("S355")
+                .orderAmount("3")
                 .build());
         // WHEN
         ResponseEntity<InquiryPart> response = testRestTemplate.exchange(

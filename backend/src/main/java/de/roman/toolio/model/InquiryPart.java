@@ -19,13 +19,13 @@ public class InquiryPart {
     private String partName;
     private String partDescription;
     // Dimensions
-    private String lengthPart;
-    private String widthPart;
-    private String heightPart;
+    private String length;
+    private String width;
+    private String height;
     // Material used for production
-    private String materialPart;
+    private String material;
     // Amount of Parts that are desired
-    private String amountPart;
+    private String orderAmount;
     // Pictures to be uploaded
     // Intentionally left blank - to be implemented
 }

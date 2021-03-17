@@ -15,7 +15,7 @@ import java.util.List;
 @Document(collection="users")
 public class User {
     private String username;
-    private String adress;
+    private String address;
     private String email;
     private List<InquiryPart> listOfInquiryParts;
 }
