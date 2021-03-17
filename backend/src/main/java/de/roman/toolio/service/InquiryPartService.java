@@ -22,9 +22,13 @@ public class InquiryPartService {
         return inquiryPartDb.findAll();
     }
 
+    public UUID generateRandomUuid(){
+        return UUID.randomUUID();
+    }
+
     public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded) {
         // Set a random UUID for the MongoDB with a random UUID
-        UUID uuid = UUID.randomUUID();
+        UUID uuid = generateRandomUuid();
         String uuidAsString = uuid.toString();
         inquiryPartToBeAdded.setUuid(uuidAsString);
         // Add the InquiryPart to the users List of posted Offers

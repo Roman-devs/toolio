@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -21,6 +20,8 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,7 +45,7 @@ public class InquiryPartControllerTest {
     }
 
     private String getUrl() {
-        return "http://localhost:" + port + "inquiries";
+        return "http://localhost:" + port + "/inquiries";
     }
 
 
@@ -98,5 +99,40 @@ public class InquiryPartControllerTest {
                         .amountPart("3")
                         .build()))
         ;
+    }
+
+    @Test
+    @DisplayName("Post an inquiry to the database")
+    public void postNewInquiry() {
+        // GIVEN
+        HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
+                InquiryPart.builder()
+                        .uuid("345")
+                        .partName("so")
+                        .partDescription("cool")
+                        .lengthPart("35")
+                        .widthPart("35")
+                        .heightPart("35")
+                        .materialPart("S355")
+                        .amountPart("3")
+                        .build()
+        );
+        // WHEN
+        ResponseEntity<InquiryPart> postResponse = testRestTemplate.exchange(
+                getUrl(), HttpMethod.POST, requestEntity, InquiryPart.class
+        );
+        postResponse.getBody().setUuid("345");
+        // THEN
+        assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
+        assertEquals(InquiryPart.builder()
+                .uuid("345")
+                .partName("so")
+                .partDescription("cool")
+                .lengthPart("35")
+                .widthPart("35")
+                .heightPart("35")
+                .materialPart("S355")
+                .amountPart("3")
+                .build(), postResponse.getBody());
     }
 }
