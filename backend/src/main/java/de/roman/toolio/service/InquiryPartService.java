@@ -9,18 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class InquiryPartService {
 
     private final InquiryPartDb inquiryPartDb;
     private final AppUserDb appUserDb;
+    private final UuidGenerator uuidGenerator;
 
     @Autowired
-    public InquiryPartService(InquiryPartDb inquiryPartDb, AppUserDb appUserDb) {
+    public InquiryPartService(InquiryPartDb inquiryPartDb, AppUserDb appUserDb, UuidGenerator uuidGenerator) {
         this.inquiryPartDb = inquiryPartDb;
         this.appUserDb = appUserDb;
+        this.uuidGenerator = uuidGenerator;
     }
 
     public List<InquiryPart> listInquiryParts() {
@@ -28,8 +29,7 @@ public class InquiryPartService {
     }
 
     public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded, String id) {
-        UuidGenerator uuidAsString = new UuidGenerator();
-        String uuid = uuidAsString.generateRandomUuid();
+        String uuid = uuidGenerator.generateRandomUuid();
         inquiryPartToBeAdded.setUuid(uuid);
         AppUser postingUser = appUserDb.findById(id).get();
         List<String> updatedPartIdList = postingUser.getInquiryPartIDs();

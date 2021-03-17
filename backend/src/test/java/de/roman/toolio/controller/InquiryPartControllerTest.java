@@ -3,6 +3,7 @@ package de.roman.toolio.controller;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
+import de.roman.toolio.model.UuidGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,8 @@ import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InquiryPartControllerTest {
@@ -44,6 +47,8 @@ public class InquiryPartControllerTest {
     private String getUrl() {
         return "http://localhost:" + port + "/inquiries";
     }
+
+    private final UuidGenerator uuidGenerator = mock(UuidGenerator.class);
 
 
     @Test
@@ -104,7 +109,6 @@ public class InquiryPartControllerTest {
         // GIVEN
         HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
                 InquiryPart.builder()
-                        .uuid("345")
                         .partName("so")
                         .partDescription("cool")
                         .length("35")
@@ -115,10 +119,11 @@ public class InquiryPartControllerTest {
                         .build()
         );
         // WHEN
+        when(uuidGenerator.generateRandomUuid()).thenReturn("345");
         ResponseEntity<InquiryPart> postResponse = testRestTemplate.exchange(
                 getUrl(), HttpMethod.POST, requestEntity, InquiryPart.class
         );
-        postResponse.getBody().setUuid("345");
+//        postResponse.getBody().setUuid("345");
         // THEN
         assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
         assertEquals(InquiryPart.builder()
