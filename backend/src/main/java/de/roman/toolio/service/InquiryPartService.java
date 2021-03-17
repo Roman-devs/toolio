@@ -2,6 +2,7 @@ package de.roman.toolio.service;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
+import de.roman.toolio.model.UuidGenerator;
 import de.roman.toolio.security.AppUser;
 import de.roman.toolio.security.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +27,13 @@ public class InquiryPartService {
         return inquiryPartDb.findAll();
     }
 
-    public UUID generateRandomUuid(){
-        return UUID.randomUUID();
-    }
-
     public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded, String id) {
-        String uuidAsString = generateRandomUuid().toString();
-        inquiryPartToBeAdded.setUuid(uuidAsString);
+        UuidGenerator uuidAsString = new UuidGenerator();
+        String uuid = uuidAsString.generateRandomUuid();
+        inquiryPartToBeAdded.setUuid(uuid);
         AppUser postingUser = appUserDb.findById(id).get();
         List<String> updatedPartIdList = postingUser.getInquiryPartIDs();
-        updatedPartIdList.add(uuidAsString);
+        updatedPartIdList.add(uuid);
         AppUser updatedUser = postingUser.toBuilder().inquiryPartIDs(updatedPartIdList).build();
         appUserDb.save(updatedUser);
         return inquiryPartDb.save(inquiryPartToBeAdded);
