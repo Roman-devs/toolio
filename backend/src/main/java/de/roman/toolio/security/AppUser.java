@@ -1,9 +1,11 @@
-package de.roman.toolio.model;
+package de.roman.toolio.security;
 
+import de.roman.toolio.model.InquiryPart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -11,11 +13,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @Document(collection="users")
-public class User {
+public class AppUser {
+    @Id
+    private String id;
     private String username;
     private String address;
     private String email;
-    private List<InquiryPart> listOfInquiryParts;
+    private List<String> inquiryPartIDs;
 }
