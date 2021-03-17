@@ -2,6 +2,8 @@ package de.roman.toolio.service;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
+import de.roman.toolio.security.AppUser;
+import de.roman.toolio.security.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,12 @@ import java.util.UUID;
 public class InquiryPartService {
 
     private final InquiryPartDb inquiryPartDb;
+    private final AppUserDb appUserDb;
 
     @Autowired
-    public InquiryPartService(InquiryPartDb inquiryPartDb) {
+    public InquiryPartService(InquiryPartDb inquiryPartDb, AppUserDb appUserDb) {
         this.inquiryPartDb = inquiryPartDb;
+        this.appUserDb = appUserDb;
     }
 
     public List<InquiryPart> listInquiryParts() {
@@ -26,14 +30,14 @@ public class InquiryPartService {
         return UUID.randomUUID();
     }
 
-    public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded) {
-        // Set a random UUID for the MongoDB with a random UUID
-        UUID uuid = generateRandomUuid();
-        String uuidAsString = uuid.toString();
+    public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded, String id) {
+        String uuidAsString = generateRandomUuid().toString();
         inquiryPartToBeAdded.setUuid(uuidAsString);
-        // Add the InquiryPart to the users List of posted Offers
-        // TODO: Add the inquiry Part to the List of the user who posted the item
-        // Add the inquiryPart to the MongoDB
+        AppUser postingUser = appUserDb.findById(id).get();
+        List<String> updatedPartIdList = postingUser.getInquiryPartIDs();
+        updatedPartIdList.add(uuidAsString);
+        AppUser updatedUser = postingUser.toBuilder().inquiryPartIDs(updatedPartIdList).build();
+        appUserDb.save(updatedUser);
         return inquiryPartDb.save(inquiryPartToBeAdded);
     }
 
