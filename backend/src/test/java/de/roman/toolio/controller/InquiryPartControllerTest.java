@@ -135,4 +135,38 @@ public class InquiryPartControllerTest {
                 .amountPart("3")
                 .build(), postResponse.getBody());
     }
+
+    @Test
+    @DisplayName("Delete an inquiry from the database")
+    public void deleteAnInquiry() {
+        // GIVEN
+        inquiryPartDb.save( InquiryPart.builder()
+                .uuid("345")
+                .partName("so")
+                .partDescription("cool")
+                .lengthPart("35")
+                .widthPart("35")
+                .heightPart("35")
+                .materialPart("S355")
+                .amountPart("3")
+                .build());
+        // WHEN
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(InquiryPart.builder()
+                .uuid("345")
+                .partName("so")
+                .partDescription("cool")
+                .lengthPart("35")
+                .widthPart("35")
+                .heightPart("35")
+                .materialPart("S355")
+                .amountPart("3")
+                .build());
+        // WHEN
+        ResponseEntity<InquiryPart> response = testRestTemplate.exchange(
+                getUrl() +"/345", HttpMethod.DELETE, entity, InquiryPart.class
+        );
+        // THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(inquiryPartDb.existsById("345"), is(false));
+    }
 }
