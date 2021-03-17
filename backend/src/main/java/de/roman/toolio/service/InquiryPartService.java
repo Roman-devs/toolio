@@ -7,6 +7,7 @@ import de.roman.toolio.security.AppUser;
 import de.roman.toolio.security.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,10 +29,10 @@ public class InquiryPartService {
         return inquiryPartDb.findAll();
     }
 
-    public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded, String id) {
+    public InquiryPart addInquiry(InquiryPart inquiryPartToBeAdded, String userId) {
         String uuid = uuidGenerator.generateRandomUuid();
         inquiryPartToBeAdded.setUuid(uuid);
-        AppUser postingUser = appUserDb.findById(id).get();
+        AppUser postingUser = appUserDb.findById(userId).get();
         List<String> updatedPartIdList = postingUser.getInquiryPartIDs();
         updatedPartIdList.add(uuid);
         AppUser updatedUser = postingUser.toBuilder().inquiryPartIDs(updatedPartIdList).build();
