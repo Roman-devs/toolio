@@ -18,7 +18,7 @@ import java.util.List;
 public class AppUser {
     @Id
     private String id;
-    private String username;
+    private String name;
     private String address;
     private String email;
     private List<String> inquiryPartIDs;
