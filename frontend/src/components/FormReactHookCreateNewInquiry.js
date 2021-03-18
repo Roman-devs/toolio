@@ -2,26 +2,38 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import styled from 'styled-components/macro'
 import moment from 'moment'
+import {postInquiry} from "../services/inquiryService";
 
-export default function FormReactHookCreateNewInquiry() {
+export default function FormReactHookCreateNewInquiry({onAdd}) {
     const {register, handleSubmit, errors} = useForm();
+
     const onSubmit = newInquiry => {
         console.log(newInquiry)
-        // postInquiry(data)
-        //             .then((data) => {
-        //                 const updatedUsers = [...users, newUser]
-        //                 setUsers(updatedUsers)
+        //postInquiry(newInquiry)
+        // onAdd(newInquiry)
+        // Für die Ebene darüber (wahrscheinlich InquiryPart Overview):
+        // Property von Form wird so gesetzt:
+        //
+        // onAdd = {addNewInquiry}
+        //
+        // dann in Ebene darüber Funktion definieren:
+        //
+        // const addNewInquiry = (inquiry) => {
+        // postInquiry(inquiry)
+        //             .then((newInquiry) => {
+        //                 const updatedInquiries = [...inquiries, newUser]
+        //                 setInquiries(updatedInquiries)
         //             })
-        //             .catch((error) => console.error(error))
+        //             .catch((error) => console.error(error))}
     }
 
     return (
         <Styles>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>New Order</h1>
+                <h1>Post a new Inquiry</h1>
 
                 <label>Product Name</label>
-                <input name="name"
+                <input name="partName"
                        ref={register({
                            required: true,
                            minLength: 1,
@@ -29,10 +41,36 @@ export default function FormReactHookCreateNewInquiry() {
                        })}/>
                 {errors.name && "Required"}
 
-                <label>Product Description</label>
-                <input name="address"
+                <label>Product Description [mm]</label>
+                <input name="partDescription"
                        ref={register({required: true})}/>
-                {errors.address && "Required"}
+                {errors.partDescription && "Required"}
+
+                <label>Maximum Length of Part [mm]</label>
+                <input name="length"
+                       ref={register({required: true})}/>
+                {errors.length && "Required"}
+
+                <label>Maximum Width of Part [mm]</label>
+                <input name="width"
+                       ref={register({required: true})}/>
+                {errors.width && "Required"}
+
+                <label>Maximum Height/Thickness of Part [mm]</label>
+                <input name="height"
+                       ref={register({required: true})}/>
+                {errors.height && "Required"}
+
+                <label>Material used for production</label>
+                <input name="material"
+                       ref={register({required: true})}/>
+                {errors.material && "Required"}
+
+                <label>Order Amount</label>
+                <input name="orderAmount"
+                       ref={register({required: true})}/>
+                {errors.orderAmount && "Required"}
+
 
                 <label>Earliest Delivery Date</label>
                 <input name="earliestDate"
@@ -47,11 +85,6 @@ export default function FormReactHookCreateNewInquiry() {
                        min={moment().format("YYYY-MM-DD")}
                        ref={register({required: true})}/>
                 {errors.latestDate && "Required"}
-
-                <label>Order Number</label>
-                <input name="order"
-                       ref={register({required: true})}/>
-
 
                 <input type="submit"/>
             </form>
