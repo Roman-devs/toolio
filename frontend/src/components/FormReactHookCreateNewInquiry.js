@@ -5,7 +5,15 @@ import moment from 'moment'
 
 export default function FormReactHookCreateNewInquiry() {
     const {register, handleSubmit, errors} = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = newInquiry => {
+        console.log(newInquiry)
+        // postInquiry(data)
+        //             .then((data) => {
+        //                 const updatedUsers = [...users, newUser]
+        //                 setUsers(updatedUsers)
+        //             })
+        //             .catch((error) => console.error(error))
+    }
 
     return (
         <Styles>
