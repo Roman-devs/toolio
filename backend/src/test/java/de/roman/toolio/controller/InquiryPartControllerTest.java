@@ -115,12 +115,13 @@ public class InquiryPartControllerTest {
     @DisplayName("Post an inquiry to the database")
     public void postNewInquiry() {
         // GIVEN
-        appUserDb.save(AppUser.builder()
+        AppUser appUser = AppUser.builder()
                 .id("5")
                 .address("Strese165")
                 .name("Hans")
                 .email("Hans@Mustermann.de")
-                .build());
+                .build();
+        appUserDb.save(appUser);
         // Add User with ID 5 to Database
         HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
                 InquiryPart.builder()

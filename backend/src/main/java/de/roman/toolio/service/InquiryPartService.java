@@ -8,6 +8,7 @@ import de.roman.toolio.security.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class InquiryPartService {
         updatedPartIdList.add(uuid);
         AppUser updatedUser = postingUser.toBuilder().inquiryPartIDs(updatedPartIdList).build();
         appUserDb.save(updatedUser);
+
         return inquiryPartDb.save(inquiryPartToBeAdded);
     }
 

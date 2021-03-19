@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,4 +23,11 @@ public class AppUser {
     private String address;
     private String email;
     private List<String> inquiryPartIDs;
+
+    public List<String> getInquiryPartIDs() {
+        if(this.inquiryPartIDs == null){
+            return new ArrayList<>();
+        }
+        return inquiryPartIDs;
+    }
 }
