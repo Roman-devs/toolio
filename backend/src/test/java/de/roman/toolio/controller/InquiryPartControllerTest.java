@@ -3,6 +3,9 @@ package de.roman.toolio.controller;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
+import de.roman.toolio.model.UuidGenerator;
+import de.roman.toolio.security.AppUser;
+import de.roman.toolio.security.AppUserDb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,8 @@ import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InquiryPartControllerTest {
@@ -30,11 +35,17 @@ public class InquiryPartControllerTest {
     @MockBean
     private RestTemplate restTemplate;
 
+    @MockBean
+    private UuidGenerator uuidGenerator;
+
     @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Autowired
     private InquiryPartDb inquiryPartDb;
+
+    @Autowired
+    private AppUserDb appUserDb;
 
     @BeforeEach
     public void setup() {
@@ -44,6 +55,8 @@ public class InquiryPartControllerTest {
     private String getUrl() {
         return "http://localhost:" + port + "/inquiries";
     }
+
+//    private final UuidGenerator uuidGenerator = mock(UuidGenerator.class);
 
 
     @Test
@@ -102,9 +115,16 @@ public class InquiryPartControllerTest {
     @DisplayName("Post an inquiry to the database")
     public void postNewInquiry() {
         // GIVEN
+        AppUser appUser = AppUser.builder()
+                .id("5")
+                .address("Strese165")
+                .name("Hans")
+                .email("Hans@Mustermann.de")
+                .build();
+        appUserDb.save(appUser);
+        // Add User with ID 5 to Database
         HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
                 InquiryPart.builder()
-                        .uuid("345")
                         .partName("so")
                         .partDescription("cool")
                         .length("35")
@@ -115,10 +135,9 @@ public class InquiryPartControllerTest {
                         .build()
         );
         // WHEN
-        ResponseEntity<InquiryPart> postResponse = testRestTemplate.exchange(
-                getUrl(), HttpMethod.POST, requestEntity, InquiryPart.class
-        );
-        postResponse.getBody().setUuid("345");
+        when(uuidGenerator.generateRandomUuid()).thenReturn("345");
+        ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),requestEntity,InquiryPart.class);
+//        postResponse.getBody().setUuid("345");
         // THEN
         assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
         assertEquals(InquiryPart.builder()

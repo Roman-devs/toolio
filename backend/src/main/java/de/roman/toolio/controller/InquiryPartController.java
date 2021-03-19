@@ -23,9 +23,15 @@ public class InquiryPartController {
         return inquiryPartService.listInquiryParts();
     }
 
+    @GetMapping("{id}")
+    public InquiryPart getInquiryById(@PathVariable String id){
+        return inquiryPartService.getInquiryById(id);
+    }
+
     @PostMapping
     public InquiryPart addInquiry(@RequestBody InquiryPart inquiryPartToBeAdded){
-        return this.inquiryPartService.addInquiry(inquiryPartToBeAdded);
+        // TODO Replace hard coded "5" with functionality
+        return this.inquiryPartService.addInquiry(inquiryPartToBeAdded, "5");
     }
 
     @DeleteMapping("{id}")
