@@ -9,6 +9,7 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
 
     const onSubmit = newInquiry => {
         console.log(newInquiry)
+        onAdd(newInquiry);
         //postInquiry(newInquiry)
         // onAdd(newInquiry)
         // Für die Ebene darüber (wahrscheinlich InquiryPart Overview):
