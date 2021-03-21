@@ -7,3 +7,6 @@ axios.defaults.headers.common = {
 export const postInquiry = (newInquiry) =>
     axios.post(inquiryUrl, newInquiry)
         .then((response) => response.data)
+
+export const getInquiries = () =>
+    axios.get(inquiryUrl).then((response) => response.data)
