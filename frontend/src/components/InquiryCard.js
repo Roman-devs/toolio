@@ -1,5 +1,5 @@
 import {
-    CardBody,
+    CardBody, CardButton,
     CardImage,
     CardWrapper, ProductDescription, ProductDimension, ProductDimensionsWrapper, ProductName,
 } from "./CardStyling";
@@ -16,10 +16,10 @@ export default function InquiryCard() {
             </ProductName>
             <ProductDescription>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-                    est, qui dolorem ipsum quia dolor sit amet.
+                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+                est, qui dolorem ipsum quia dolor sit amet.
             </ProductDescription>
             <ProductDimensionsWrapper>
                 <ProductDimension>
@@ -45,6 +45,8 @@ export default function InquiryCard() {
                     <p>25</p>
                 </ProductDimension>
             </ProductDimensionsWrapper>
+            <CardButton>Contact</CardButton>
+            <CardButton>Details</CardButton>
         </CardWrapper>
     )
 }
