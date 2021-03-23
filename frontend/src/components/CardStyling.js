@@ -9,6 +9,7 @@ export const CardWrapper = styled.div`
   border-radius: 15px;
   box-shadow: 0 0 20px darkgrey;
   text-align: center;
+  background: white;
 `;
 
 export const CardImage = styled.div`

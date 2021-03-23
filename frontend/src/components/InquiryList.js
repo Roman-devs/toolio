@@ -15,6 +15,7 @@ export default function InquiryList({inquiries}) {
 }
 
 const List = styled.ul`
+  background: whitesmoke;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
