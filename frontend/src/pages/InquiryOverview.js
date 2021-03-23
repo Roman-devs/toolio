@@ -22,7 +22,6 @@ export default function InquiryOverview(){
     }
     return(
         <>
-            <InquiryCard/>
             {inquiries && <InquiryList inquiries={inquiries}/>}
             <FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>
         </>

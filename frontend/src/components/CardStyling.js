@@ -3,7 +3,7 @@ import styled, { css } from "styled-components/macro";
 export const CardWrapper = styled.div`
   overflow: hidden;
   padding: 0 0 25px;
-  margin: 48px auto 0;
+  margin: 10px;
   width: 300px;
   font-family: "Courier New", arial, sans-serif;
   border-radius: 15px;
@@ -35,6 +35,7 @@ export const ProductName = styled.div`
 export const ProductDescription = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 45px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
