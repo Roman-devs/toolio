@@ -11,7 +11,7 @@ export default function InquiryOverview(){
         getInquiries()
             .then(setInquiries)
             .catch((error) => console.error(error))
-    })
+    },[])
 
     const addNewInquiry = (inquiry) => {
         postInquiry(inquiry)
