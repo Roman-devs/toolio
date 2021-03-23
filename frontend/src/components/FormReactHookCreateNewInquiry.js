@@ -9,22 +9,7 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
 
     const onSubmit = newInquiry => {
         console.log(newInquiry)
-        //postInquiry(newInquiry)
-        // onAdd(newInquiry)
-        // Für die Ebene darüber (wahrscheinlich InquiryPart Overview):
-        // Property von Form wird so gesetzt:
-        //
-        // onAdd = {addNewInquiry}
-        //
-        // dann in Ebene darüber Funktion definieren:
-        //
-        // const addNewInquiry = (inquiry) => {
-        // postInquiry(inquiry)
-        //             .then((newInquiry) => {
-        //                 const updatedInquiries = [...inquiries, newUser]
-        //                 setInquiries(updatedInquiries)
-        //             })
-        //             .catch((error) => console.error(error))}
+        onAdd(newInquiry);
     }
 
     return (
