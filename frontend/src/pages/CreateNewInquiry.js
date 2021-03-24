@@ -1,10 +1,10 @@
-import {getInquiries, postInquiry} from "../services/inquiryService";
-import React, { useEffect, useState } from 'react'
 import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewInquiry";
-import InquiryList from "../components/InquiryList";
+import {getInquiries, postInquiry} from "../services/inquiryService";
+import {useEffect, useState} from "react";
 import BurgerMenu from "../components/BurgerMenu";
 
-export default function InquiryOverview(){
+
+export default function CreateNewInquiry(){
     const [inquiries, setInquiries] = useState([])
 
     useEffect(()=>{
@@ -20,12 +20,11 @@ export default function InquiryOverview(){
                 setInquiries(updatedInquiries);
             }) .catch((error) => console.error(error))
     }
+
     return(
         <>
             <BurgerMenu/>
-            {inquiries && <InquiryList inquiries={inquiries}/>}
-            {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
+            <FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>
         </>
-
     )
 }

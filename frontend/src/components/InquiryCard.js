@@ -1,8 +1,8 @@
 import {
-    CardBody, CardButton,
+    CardButton,
     CardImage,
     CardWrapper, ProductDescription, ProductDimension, ProductDimensionsWrapper, ProductName,
-} from "./CardStyling";
+} from "../styling/CardStyling";
 
 export default function InquiryCard({inquiry}) {
 

@@ -26,6 +26,7 @@ export const CardImage = styled.div`
 `;
 
 export const ProductName = styled.div`
+  padding-top: 10px;
   padding-right: 25px;
   padding-left: 25px;
   height: auto;
@@ -34,6 +35,7 @@ export const ProductName = styled.div`
   line-height: 85%;
 `
 export const ProductDescription = styled.div`
+  padding-top: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 45px;
@@ -55,7 +57,7 @@ export const ProductDimensionsWrapper = styled.div`
   display:flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 12.5px 25px 5px 25px;
+  padding: 10px 25px 5px 25px;
   box-sizing: border-box;
   // flex space between;
   font-size: 1em;
@@ -66,7 +68,7 @@ export const ProductDimensionsWrapper = styled.div`
     text-align: center;
   }
   div+div{
-    margin-left: 10px;
+    margin-left: 5px;
   }
   p{
     margin:0px;
