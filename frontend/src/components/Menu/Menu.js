@@ -2,6 +2,7 @@ import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu, MenuCategory, MenuHeader} from './Menu.styled';
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 const Menu = ({open}) => {
 
@@ -11,7 +12,7 @@ const Menu = ({open}) => {
                 Hi Roman!
             </MenuHeader>
             <MenuCategory>
-                <a>
+                <a href="/">
                     <span aria-label="Show All Inquiries">Show All Inquiries</span>
                 </a>
                 <a>

@@ -4,18 +4,18 @@ export const StyledMenu = styled.nav`
   transform: ${({open}) => open ? 'translateX(0)' : 'translateX(-100%)'};
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   background: whitesmoke;
   height: 100vh;
   text-align: left;
   padding: 2rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
   
-  a {
+ a {
     font-size: 1rem;
     font-family: "Courier New", arial, sans-serif;
     padding: 1rem 0;
@@ -34,7 +34,7 @@ export const StyledMenu = styled.nav`
 export const MenuCategory = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   background: whitesmoke;
   margin-top: 2rem;
 `
