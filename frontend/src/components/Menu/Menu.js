@@ -1,22 +1,26 @@
 import React from 'react';
-import { bool } from 'prop-types';
-import {StyledMenu} from './Menu.styled';
+import {bool} from 'prop-types';
+import {StyledMenu, MenuCategory, MenuHeader} from './Menu.styled';
+import styled from 'styled-components';
 
 const Menu = ({open}) => {
 
     return (
         <StyledMenu open={open}>
-            <a>
-                <span aria-label="Show All Inquiries">Show All Inquiries</span>
-
-
-            </a>
-            <a>
-                <span aria-label="My Inquiries">My Inquiries</span>
-            </a>
-            <a>
-                <span aria-label="Offers Made">Offers Made</span>
-            </a>
+            <MenuHeader>
+                Hi Roman!
+            </MenuHeader>
+            <MenuCategory>
+                <a>
+                    <span aria-label="Show All Inquiries">Show All Inquiries</span>
+                </a>
+                <a>
+                    <span aria-label="My Inquiries">My Inquiries</span>
+                </a>
+                <a>
+                    <span aria-label="Offers Made">Offers Made</span>
+                </a>
+            </MenuCategory>
         </StyledMenu>
     )
 }
