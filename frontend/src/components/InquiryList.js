@@ -6,7 +6,7 @@ export default function InquiryList({inquiries}) {
     return (
         <List>
             {inquiries.map((inquiry) => (
-                <li>
+                <li key={inquiry.id}>
                     <InquiryCard inquiry={inquiry}/>
                 </li>
             ))}

@@ -4,23 +4,32 @@ import InquiryOverview from "./pages/InquiryOverview";
 import Burger from "./components/Burger/Burger";
 import Menu from "./components/Menu";
 import GlobalStyle from "./styling/GlobalStyles";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import CreateNewInquiry from "./pages/CreateNewInquiry";
 
 
 function App() {
-    const [open, setOpen] = useState(false)
-    const node = useRef();
-    useOnClickOutside(node, () => setOpen(false))
-
     return (
         <>
             <GlobalStyle/>
-            <div ref={node}>
-                <Burger open={open} setOpen={setOpen}/>
-                <Menu open={open} setOpen={setOpen}/>
-            </div>
-            <div>
-                <InquiryOverview/>
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <InquiryOverview/>
+                    </Route>
+                    <Route path="/newInquiry">
+                        <CreateNewInquiry />
+                    </Route>
+                    <div>
+                        <InquiryOverview/>
+                    </div>
+                </Switch>
+            </Router>
         </>
     );
 }
