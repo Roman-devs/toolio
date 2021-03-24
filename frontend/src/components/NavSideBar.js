@@ -1,10 +1,10 @@
-import {NavBarWrapper} from "../styling/NavSideBarStyling";
+import {Nav} from "../styling/NavSideBarStyling";
 
 
 export default function NavSideBar(){
     return(
-        <NavBarWrapper>
+        <Nav>
             Hello
-        </NavBarWrapper>
+        </Nav>
     )
 }
