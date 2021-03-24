@@ -1,16 +1,13 @@
 import styled from 'styled-components/macro'
+import InquiryCard from "./InquiryCard";
 
-export default function InquiryList({inquiries}){
+export default function InquiryList({inquiries}) {
 
-    return(
+    return (
         <List>
             {inquiries.map((inquiry) => (
-                <li key={inquiry.id}>
-                    <span>{inquiry.partName}</span>
-                    {/*<Link to={`/user/${user.name}`}>*/}
-                    {/*    <img src={user.avatar} alt={user.name} />*/}
-                    {/*    <span className="user-name">{user.name}</span>*/}
-                    {/*</Link>*/}
+                <li>
+                    <InquiryCard inquiry={inquiry}/>
                 </li>
             ))}
         </List>
@@ -18,18 +15,10 @@ export default function InquiryList({inquiries}){
 }
 
 const List = styled.ul`
+  background: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   list-style: none;
-  padding: 0;
-  margin: 0;
-
-  a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  li + li {
-    margin-top: 16px;
-  }
 `
 

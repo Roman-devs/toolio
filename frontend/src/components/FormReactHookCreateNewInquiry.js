@@ -31,22 +31,22 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                        ref={register({required: true})}/>
                 {errors.partDescription && "Required"}
 
-                <label>Maximum Length of Part [mm]</label>
+                <label>Max Length [mm]</label>
                 <input name="length"
                        ref={register({required: true})}/>
                 {errors.length && "Required"}
 
-                <label>Maximum Width of Part [mm]</label>
+                <label>Max Width [mm]</label>
                 <input name="width"
                        ref={register({required: true})}/>
                 {errors.width && "Required"}
 
-                <label>Maximum Height/Thickness of Part [mm]</label>
+                <label>Max Height/Thickness [mm]</label>
                 <input name="height"
                        ref={register({required: true})}/>
                 {errors.height && "Required"}
 
-                <label>Material used for production</label>
+                <label>Material</label>
                 <input name="material"
                        ref={register({required: true})}/>
                 {errors.material && "Required"}
@@ -71,7 +71,7 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                        ref={register({required: true})}/>
                 {errors.latestDate && "Required"}
 
-                <input type="submit"/>
+                <input className="submitButton" type="submit" value="Post Inquiry!"/>
             </form>
         </Styles>
     )
@@ -80,27 +80,27 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
 const Styles = styled.div`
   background: whitesmoke;
   padding: 20px;
+  font-family: "Courier New", arial, sans-serif;
+  text-align: center;
 
   h1 {
-    border-bottom: 1px solid white;
-    color: #3d3d3d;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    padding: 10px;
+    line-height: 100%;
+    font-weight: bold;
+    font-size: 1.5em;
     text-align: center;
   }
 
   form {
     background: white;
-    border: 1px solid #dedede;
+    border-radius: 15px;
+    box-shadow: 0 0 20px darkgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
     max-width: 500px;
     padding: 30px 50px;
+    text-align: center;
   }
 
   input {
@@ -109,12 +109,12 @@ const Styles = styled.div`
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
+    text-align: center;
   }
 
   label {
     color: #3d3d3d;
     display: block;
-    font-family: sans-serif;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 5px;
@@ -122,15 +122,30 @@ const Styles = styled.div`
 
   .error {
     color: red;
-    font-family: sans-serif;
     font-size: 12px;
     height: 30px;
   }
 
   .submitButton {
-    background-color: #6976d9;
-    color: white;
-    font-family: sans-serif;
-    font-size: 14px;
+    //background-color: #6976d9;
+    //color: white;
+    //font-size: 14px;
     margin: 20px 0px;
+    display: inline-block;
+    padding: 15px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px;
+    border-radius: 25px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.4, 1);
+
+    &:hover {
+      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+      transform: translate(0, -1px);
+    }
 `;

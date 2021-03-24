@@ -2,6 +2,7 @@ import {getInquiries, postInquiry} from "../services/inquiryService";
 import { useEffect, useState } from 'react'
 import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewInquiry";
 import InquiryList from "../components/InquiryList";
+import InquiryCard from "../components/InquiryCard";
 
 export default function InquiryOverview(){
     const [inquiries, setInquiries] = useState([])
@@ -10,7 +11,7 @@ export default function InquiryOverview(){
         getInquiries()
             .then(setInquiries)
             .catch((error) => console.error(error))
-    })
+    },[])
 
     const addNewInquiry = (inquiry) => {
         postInquiry(inquiry)
