@@ -1,7 +1,9 @@
+import styled from 'styled-components/macro'
 import React, {useRef, useState} from "react";
 import {useOnClickOutside} from "../hooks";
 import Burger from "./Burger";
 import Menu from "./Menu";
+
 
 export default function BurgerMenu() {
     const [open, setOpen] = useState(false)
@@ -9,9 +11,13 @@ export default function BurgerMenu() {
     useOnClickOutside(node, () => setOpen(false))
 
     return (
-        <div ref={node}>
+        <MenuSpaceFolded ref={node}>
             <Burger open={open} setOpen={setOpen}/>
             <Menu open={open} setOpen={setOpen}/>
-        </div>
+        </MenuSpaceFolded>
     )
 }
+
+const MenuSpaceFolded = styled.div`
+    width: fit-content;
+`

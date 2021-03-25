@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const StyledMenu = styled.nav`
   transform: ${({open}) => open ? 'translateX(0)' : 'translateX(-100%)'};
@@ -9,11 +9,12 @@ export const StyledMenu = styled.nav`
   height: 100vh;
   text-align: left;
   padding: 2rem;
-  position: fixed;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
+  border-radius: 2.5px;
+  box-shadow: 0 0 20px darkgrey;
   
  a {
     font-size: 1rem;
@@ -42,7 +43,7 @@ export const MenuCategory = styled.div`
 export const MenuHeader = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   background: whitesmoke;
   margin-top: 7.5rem;
   font-size: xx-large;

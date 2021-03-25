@@ -1,31 +1,59 @@
 import {getInquiries, postInquiry} from "../services/inquiryService";
-import React, { useEffect, useState } from 'react'
-import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewInquiry";
+import React, {useEffect, useState} from 'react'
+import styled from 'styled-components/macro';
 import InquiryList from "../components/InquiryList";
 import BurgerMenu from "../components/BurgerMenu";
+import TopBar from "../components/TopBar";
 
-export default function InquiryOverview(){
+export default function InquiryOverview() {
     const [inquiries, setInquiries] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         getInquiries()
             .then(setInquiries)
             .catch((error) => console.error(error))
-    },[])
+    }, [])
 
     const addNewInquiry = (inquiry) => {
         postInquiry(inquiry)
-            .then((newInquiry)=>{
+            .then((newInquiry) => {
                 const updatedInquiries = [...inquiries, newInquiry]
                 setInquiries(updatedInquiries);
-            }) .catch((error) => console.error(error))
+            }).catch((error) => console.error(error))
     }
-    return(
+    return (
         <>
-            <BurgerMenu/>
-            {inquiries && <InquiryList inquiries={inquiries}/>}
-            {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
+            <PageLayoutContainer>
+                <BurgerMenu/>
+                <Content>
+                    <TopBar/>
+                    <InquiriesContainer>
+                        {inquiries && <InquiryList inquiries={inquiries}/>}
+                    </InquiriesContainer>
+                </Content>
+                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
+            </PageLayoutContainer>
         </>
-
     )
 }
+
+const PageLayoutContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+  background-color: whitesmoke;
+`
+
+const InquiriesContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+`
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh
+`
