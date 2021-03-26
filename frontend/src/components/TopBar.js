@@ -16,10 +16,10 @@ const TopBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
-  
   width: 100%;
-  height: 17rem;
+
+  padding-top: 1.25rem;
+  height: 2.5rem;
   
   font-family: "Courier New", arial, sans-serif;
 

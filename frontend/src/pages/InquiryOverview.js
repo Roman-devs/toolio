@@ -51,7 +51,8 @@ const InquiriesContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh
+  width: 100%;
+  height: 100%;
 `

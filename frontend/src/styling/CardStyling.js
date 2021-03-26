@@ -29,7 +29,6 @@ export const ProductName = styled.div`
   padding-top: 10px;
   padding-right: 25px;
   padding-left: 25px;
-  height: auto;
   text-align: center;
   font-size: 0.85em;
   line-height: 85%;
@@ -59,7 +58,7 @@ export const ProductDimensionsWrapper = styled.div`
   justify-content: space-evenly;
   padding: 10px 25px 5px 25px;
   box-sizing: border-box;
-  // flex space between;
+   flex space between;
   font-size: 1em;
   h1{
     line-height: 100%;
@@ -71,7 +70,7 @@ export const ProductDimensionsWrapper = styled.div`
     margin-left: 5px;
   }
   p{
-    margin:0px;
+    margin:0;
   }
 `
 export const ProductDimension = styled.div`
