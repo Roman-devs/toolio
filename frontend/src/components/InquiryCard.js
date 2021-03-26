@@ -3,6 +3,7 @@ import {
     CardImage,
     CardWrapper, ProductDescription, ProductDimension, ProductDimensionsWrapper, ProductName,
 } from "../styling/CardStyling";
+import {Link} from "react-router-dom";
 
 export default function InquiryCard({inquiry}) {
 
@@ -42,7 +43,9 @@ export default function InquiryCard({inquiry}) {
                 </ProductDimension>
             </ProductDimensionsWrapper>
             <CardButton>Contact</CardButton>
-            <CardButton>Details</CardButton>
+            <Link to={`/inquiryDetails/${inquiry.uuid}`}>
+                <CardButton>Details</CardButton>
+            </Link>
         </CardWrapper>
     )
 }

@@ -10,3 +10,6 @@ export const postInquiry = (newInquiry) =>
 
 export const getInquiries = () =>
     axios.get(inquiryUrl).then((response) => response.data)
+
+export const getInquiryById = (uuid) =>
+    axios.get(`${inquiryUrl}/${uuid}`).then((response) => response.data)

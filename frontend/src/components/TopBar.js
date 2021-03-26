@@ -15,7 +15,7 @@ const TopBar = ()=>{
 const TopBarContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 100%;
 
   padding-top: 1.25rem;

@@ -11,6 +11,7 @@ import {
     Link
 } from "react-router-dom";
 import CreateNewInquiry from "./pages/CreateNewInquiry";
+import InquiryDetails from "./pages/InquiryDetails";
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
                     </Route>
                     <Route path="/newInquiry">
                         <CreateNewInquiry />
+                    </Route>
+                    <Route path="/inquiryDetails/:uuid">
+                        <InquiryDetails/>
                     </Route>
                     <div>
                         <InquiryOverview/>
