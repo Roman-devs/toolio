@@ -46,8 +46,6 @@ const PageLayoutContainer = styled.div`
 `
 
 const InquiriesContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
   overflow-y: scroll;
 `
 
