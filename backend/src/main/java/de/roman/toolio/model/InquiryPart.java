@@ -26,6 +26,9 @@ public class InquiryPart {
     private String material;
     // Amount of Parts that are desired
     private String orderAmount;
+    // Delivery Dates
+    private String latestDate;
+    private String earliestDate;
     // Pictures to be uploaded
     // Intentionally left blank - to be implemented
 }
