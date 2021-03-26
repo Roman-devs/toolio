@@ -17,7 +17,6 @@ const TopBarContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-
   padding-top: 1.25rem;
   height: 2.5rem;
   
