@@ -52,6 +52,7 @@ const ItemContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
   width: 100vw;
   height: 100vh

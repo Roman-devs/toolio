@@ -1,13 +1,21 @@
+import styled from "styled-components/macro";
+
 export default function InquiryDetailsItem({inquiry}) {
 
     return (
 
-        <ul>
-            <li>
-                {inquiry.uuid}
+        <List>
+            <li className="picture">
+                <h1>
+                    PLACEHOLDER FOR PICTURE
+                </h1>
             </li>
-            <li>
-                {inquiry.partName}
+
+            <li className="name">
+                <h1>{inquiry.partName}</h1>
+            </li>
+            <li className="id">
+                Offer-ID: {inquiry.uuid}
             </li>
             <li>
                 {inquiry.partDescription}
@@ -35,7 +43,42 @@ export default function InquiryDetailsItem({inquiry}) {
             </li>
 
 
-        </ul>
+        </List>
 
     )
 }
+
+const List = styled.ul`
+
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+  font-family: "Courier New", arial, sans-serif;
+  margin: 7.5rem;
+
+  
+  .name {
+    background-color: cornflowerblue;
+  }
+  .id {
+    background-color: aqua;
+  }
+
+  .picture {
+    background-color: darkkhaki;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      opacity: 0.7;
+      object-fit: contain;
+      padding-bottom: 25px;
+    }
+  }
+
+  li {
+    text-align: center;
+  }
+`
