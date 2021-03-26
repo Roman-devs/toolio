@@ -6,6 +6,7 @@ import styled from "styled-components/macro";
 import {useParams} from "react-router";
 import {getInquiryById} from "../services/inquiryService";
 import InquiryCard from "../components/InquiryCard";
+import InquiryDetailsItem from "../components/InquiryDetailsItem";
 
 
 export default function InquiryDetails(){
@@ -24,7 +25,7 @@ export default function InquiryDetails(){
                 <Content>
                     <TopBar/>
                     <InquiryContainer>
-                        {inquiry && <InquiryCard inquiry={inquiry}/>}
+                        {inquiry && <InquiryDetailsItem inquiry={inquiry}/>}
                     </InquiryContainer>
                 </Content>
                 {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
