@@ -1,16 +1,13 @@
-import React, {useState, useRef} from "react";
-import {useOnClickOutside} from './hooks';
+import React from "react";
 import InquiryOverview from "./pages/InquiryOverview";
-import Burger from "./components/Burger/Burger";
-import Menu from "./components/Menu";
 import GlobalStyle from "./styling/GlobalStyles";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 import CreateNewInquiry from "./pages/CreateNewInquiry";
+import InquiryDetails from "./pages/InquiryDetails";
 
 
 function App() {
@@ -24,6 +21,9 @@ function App() {
                     </Route>
                     <Route path="/newInquiry">
                         <CreateNewInquiry />
+                    </Route>
+                    <Route path="/inquiryDetails/:uuid">
+                        <InquiryDetails/>
                     </Route>
                     <div>
                         <InquiryOverview/>
