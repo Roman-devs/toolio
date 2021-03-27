@@ -8,11 +8,13 @@ import de.roman.toolio.security.AppUserDb;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
 class InquiryPartServiceTest {
@@ -86,7 +88,7 @@ class InquiryPartServiceTest {
     public void testAddNewInquiryPart() {
         //GIVEN
         InquiryPart inquiryPartToBeAdded = InquiryPart.builder()
-                .uuid("4")
+                .uuid("")
                 .partName("Gear1")
                 .partDescription("Some Description")
                 .length("165")
@@ -99,26 +101,62 @@ class InquiryPartServiceTest {
                 .build();
 
         when(uuidGenerator.generateRandomUuid()).thenReturn("123");
-        when(appUserDb.findById("1")).thenReturn(
+        when(appUserDb.findById("5")).thenReturn(
                 Optional.of(AppUser.builder()
                         .id("5")
                         .email("max@mustermann.de")
                         .address("Musterstrasse 1")
                         .name("Max Mustermann")
-                        .inquiryPartIDs(List.of("1", "2", "3"))
+                        .inquiryPartIDs(new ArrayList<>())
                         .build()));
         AppUser mockUser = AppUser.builder()
-                .id("5")
+                .id("1")
                 .email("max@mustermann.de")
                 .address("Musterstrasse 1")
                 .name("Max Mustermann")
-                .inquiryPartIDs(List.of("1", "2", "3"))
+                .inquiryPartIDs(new ArrayList<>())
                 .build();
         when(appUserDb.save(mockUser)).thenReturn(mockUser);
         //WHEN
-        InquiryPart actual = inquiryPartService.addInquiry(inquiryPartToBeAdded, "1");
+        when(inquiryPartDb.save(inquiryPartToBeAdded)).thenReturn(InquiryPart.builder()
+                .uuid("123")
+                .partName("Gear1")
+                .partDescription("Some Description")
+                .length("165")
+                .width("120")
+                .height("15")
+                .material("S355")
+                .orderAmount("1")
+                .earliestDate("2021-04-15")
+                .latestDate("2021-08-19")
+                .build());
+        InquiryPart actual = inquiryPartService.addInquiry(inquiryPartToBeAdded, "5");
         //THEN
-
+        InquiryPart expectedPart = InquiryPart.builder()
+                .uuid("123")
+                .partName("Gear1")
+                .partDescription("Some Description")
+                .length("165")
+                .width("120")
+                .height("15")
+                .material("S355")
+                .orderAmount("1")
+                .earliestDate("2021-04-15")
+                .latestDate("2021-08-19")
+                .build();
+        assertThat(actual, is(expectedPart));
         verify(inquiryPartDb).save(inquiryPartToBeAdded);
     }
+
+    @Test
+    @DisplayName("Delete Inquiry From Database")
+    public void deleteInquiryFromDatabase(){
+        //WHEN
+        inquiryPartService.deleteInquiryFromDatabase("123");
+        //THEN
+        verify(inquiryPartDb).deleteById("123");
+
+    }
 }
+
+
