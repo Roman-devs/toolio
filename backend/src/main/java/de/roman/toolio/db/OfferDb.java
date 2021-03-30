@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OfferDb extends PagingAndSortingRepository<Offer, String> {
     List<Offer> findAll();
-    List<Offer> findAllByOwnerIdOfOffer(String ownerIdOfOffer);
+    List<Offer> findAllByOwnerIdOfInquiry(String ownerIdOfOffer);
     List<Offer> findAllByOfferingUserId(String offeringUserId);
 }

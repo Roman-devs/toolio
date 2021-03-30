@@ -1,12 +1,13 @@
 package de.roman.toolio.controller;
 
 import de.roman.toolio.model.Offer;
+import de.roman.toolio.model.OfferDTO;
+import de.roman.toolio.security.AppUser;
 import de.roman.toolio.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -36,9 +37,13 @@ public class OfferController {
         return offerService.getReceivedOffersByUserId(userId);
     }
 
-    @GetMapping("poster/{posterId}")
-    public List<Offer> getReceivedOffersByPosterId(@PathVariable String posterId){
-        return offerService.getReceivedOffersByPosterId(posterId);
+    @GetMapping("poster/{postingUserId}")
+    public List<Offer> getReceivedOffersByPosterId(@PathVariable String postingUserId){
+        return offerService.getReceivedOffersByPostingUserId(postingUserId);
     }
 
+    @PostMapping
+    public Offer postNewOffer(OfferDTO offerDto, String offeringUserId ,String inquiryPartId){
+        return offerService.postNewOffer(offerDto,offeringUserId,inquiryPartId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
+    }
 }
