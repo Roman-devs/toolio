@@ -112,6 +112,48 @@ public class InquiryPartControllerTest {
     }
 
     @Test
+    @DisplayName("Get Inquiry By Id")
+    public void getInquiryById(){
+        // Given
+        inquiryPartDb.save(InquiryPart.builder()
+                .uuid("123")
+                .partName("foo")
+                .partDescription("bar")
+                .length("25")
+                .width("25")
+                .height("25")
+                .material("S355")
+                .orderAmount("5")
+                .build());
+        inquiryPartDb.save(InquiryPart.builder()
+                .uuid("345")
+                .partName("so")
+                .partDescription("cool")
+                .length("35")
+                .width("35")
+                .height("35")
+                .material("S355")
+                .orderAmount("3")
+                .build());
+        // When
+        ResponseEntity<InquiryPart> response = testRestTemplate.getForEntity(getUrl()+"/345", InquiryPart.class);
+        // Then
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(
+                InquiryPart.builder()
+                        .uuid("345")
+                        .partName("so")
+                        .partDescription("cool")
+                        .length("35")
+                        .width("35")
+                        .height("35")
+                        .material("S355")
+                        .orderAmount("3")
+                        .build()))
+        ;
+    }
+
+    @Test
     @DisplayName("Post an inquiry to the database")
     public void postNewInquiry() {
         // GIVEN
