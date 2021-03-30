@@ -30,7 +30,7 @@ public class OfferService {
     }
 
     public List<Offer> getReceivedOffersByUserId(String userId) {
-        return offerDb.findAllByOwnerId(userId);
+        return offerDb.findAllByOwnerIdOfOffer(userId);
     }
 
     public List<Offer> getAllOffersOfDatabase() {
@@ -38,6 +38,6 @@ public class OfferService {
     }
 
     public List<Offer> getReceivedOffersByPosterId(String posterId) {
-        return offerDb.findAllByPosterId(posterId);
+        return offerDb.findAllByOfferingUserId(posterId);
     }
 }

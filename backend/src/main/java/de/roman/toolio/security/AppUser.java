@@ -1,6 +1,7 @@
 package de.roman.toolio.security;
 
 import de.roman.toolio.model.InquiryPart;
+import de.roman.toolio.model.Offer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class AppUser {
     private String address;
     private String email;
     private List<String> inquiryPartIDs;
+    private List<String> receivedOfferIDs;
+    private List<String> madeOfferIDs;
 
     public List<String> getInquiryPartIDs() {
         if(this.inquiryPartIDs == null){
