@@ -44,25 +44,25 @@ public class OfferService {
         return offerDb.findAllByOfferingUserId(postingUserId);
     }
 
-    public Optional<Offer> postNewOffer(OfferDTO offerDTO, String offeringUserId, String inquiryPartId) {
+    public Optional<Offer> postNewOffer(OfferDTO offerDTO) {
         String offerId = uuidgenerator.generateRandomUuid();
         Offer offerToBeAdded = Offer.builder()
                 .offerDescription(offerDTO.getOfferDescription())
                 .offerFIATamount(offerDTO.getOfferFIATamount())
                 .expectedDeliveryDate(offerDTO.getExpectedDeliveryDate())
                 .offerId(offerId)
-                .inquiryPartId(inquiryPartId)
+                .inquiryPartId(offerDTO.getInquiryPartId())
                 .ownerIdOfInquiry("")
-                .offeringUserId(offeringUserId)
+                .offeringUserId(offerDTO.getOfferingUserId())
                 .build();
-        if (inquiryPartDb.existsById(inquiryPartId)) {
+        if (inquiryPartDb.existsById(offerDTO.getInquiryPartId())) {
             // UPDATE THE USER THAT IS THE OWNER OF THE INQUIRY WITH THE OFFER ID THAT IS POSTED
-            AppUser ownerOfInquiry = appUserDb.findByInquiryPartIDsContaining(inquiryPartId);  // 8acfa519-7e9f-4dbe-b3cb-83d3bebce7c1
+            AppUser ownerOfInquiry = appUserDb.findByInquiryPartIDsContaining(offerDTO.getInquiryPartId());  // 8acfa519-7e9f-4dbe-b3cb-83d3bebce7c1
             List<String> updatedListOfReceivedOffers = ownerOfInquiry.getReceivedOfferIDs();
             updatedListOfReceivedOffers.add(offerId);
             AppUser updatedOwnerofInquiry = ownerOfInquiry.toBuilder().receivedOfferIDs(updatedListOfReceivedOffers).build();
             // UPDATE THE USER THAT IS POSTING THE OFFER WITH THE OFFER ID THAT IS POSTED
-            AppUser postingUserOfOffer = appUserDb.findById(offeringUserId).get();
+            AppUser postingUserOfOffer = appUserDb.findById(offerDTO.getOfferingUserId()).get();
             List<String> updatedListOfMadeOffers = postingUserOfOffer.getMadeOfferIDs();
             updatedListOfMadeOffers.add(offerId);
             AppUser updatedOfferingUser = postingUserOfOffer.toBuilder().madeOfferIDs(updatedListOfMadeOffers).build();

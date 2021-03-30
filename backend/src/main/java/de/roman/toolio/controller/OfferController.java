@@ -43,7 +43,7 @@ public class OfferController {
     }
 
     @PostMapping
-    public Offer postNewOffer(OfferDTO offerDto, String offeringUserId ,String inquiryPartId){
-        return offerService.postNewOffer(offerDto,offeringUserId,inquiryPartId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
+    public Offer postNewOffer(@RequestBody OfferDTO offerDto){
+        return offerService.postNewOffer(offerDto).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
     }
 }

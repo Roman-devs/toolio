@@ -13,4 +13,6 @@ public class OfferDTO {
     private String offerDescription;
     private String offerFIATamount;
     private String expectedDeliveryDate;
+    private String offeringUserId;
+    private String inquiryPartId;
 }
