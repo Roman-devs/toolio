@@ -17,7 +17,9 @@ public class Offer {
     @Id
     private String offerId;
     private String inquiryPartId;
-    private String ownerIdOfOffer;
+    private String ownerIdOfInquiry;
     private String offeringUserId;
     private String expectedDeliveryDate;
+    private String offerDescription;
+    private String offerFIATamount;
 }
