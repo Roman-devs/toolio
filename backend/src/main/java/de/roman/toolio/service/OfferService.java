@@ -5,8 +5,8 @@ import de.roman.toolio.db.OfferDb;
 import de.roman.toolio.model.Offer;
 import de.roman.toolio.model.OfferDTO;
 import de.roman.toolio.model.UuidGenerator;
-import de.roman.toolio.security.AppUser;
-import de.roman.toolio.security.AppUserDb;
+import de.roman.toolio.model.AppUser;
+import de.roman.toolio.db.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,6 @@ package de.roman.toolio.controller;
 
 import de.roman.toolio.model.Offer;
 import de.roman.toolio.model.OfferDTO;
-import de.roman.toolio.security.AppUser;
 import de.roman.toolio.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

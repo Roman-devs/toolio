@@ -4,7 +4,7 @@ import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.db.OfferDb;
 import de.roman.toolio.model.Offer;
 import de.roman.toolio.model.UuidGenerator;
-import de.roman.toolio.security.AppUserDb;
+import de.roman.toolio.db.AppUserDb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

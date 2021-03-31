@@ -1,6 +1,6 @@
-package de.roman.toolio.security;
+package de.roman.toolio.db;
 
-import de.roman.toolio.model.Offer;
+import de.roman.toolio.model.AppUser;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
