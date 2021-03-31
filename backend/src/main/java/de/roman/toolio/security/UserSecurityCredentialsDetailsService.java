@@ -23,7 +23,7 @@ public class UserSecurityCredentialsDetailsService implements UserDetailsService
         return User.builder()
                 .username(username)
                 .password(userSecurityCredentials.getPassword())
-                //.authorities("user")
+                .authorities("user")
                 .build();
     }
 }

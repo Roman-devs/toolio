@@ -1,7 +1,6 @@
 package de.roman.toolio.security;
 
 
-import de.roman.toolio.model.AppUser;
 import de.roman.toolio.service.TimeUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -27,13 +26,13 @@ import java.util.List;
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtConfig jwtConfig;
     private final TimeUtils timeUtils;
+    private final UserSecurityCredentialsDetailsService userSecurityCredentialsDetailsService;
 
     @Autowired
-    UserSecurityCredentialsDetailsService userSecurityCredentialsDetailsService;
-
-    public JwtAuthFilter(JwtConfig jwtConfig, TimeUtils timeUtils) {
+    public JwtAuthFilter(JwtConfig jwtConfig, TimeUtils timeUtils, UserSecurityCredentialsDetailsService userSecurityCredentialsDetailsService) {
         this.jwtConfig = jwtConfig;
         this.timeUtils = timeUtils;
+        this.userSecurityCredentialsDetailsService = userSecurityCredentialsDetailsService;
     }
 
     @Override
