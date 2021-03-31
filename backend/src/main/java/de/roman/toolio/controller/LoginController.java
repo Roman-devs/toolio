@@ -38,7 +38,7 @@ public class LoginController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials");
         }
         return jwtUtils.createToken(userSecurityCredentials.getUsername(), new HashMap<>(Map.of(
-                "course","rem-java-21-1"
+                "TooLio","validatedUser"
         )));
     }
 
