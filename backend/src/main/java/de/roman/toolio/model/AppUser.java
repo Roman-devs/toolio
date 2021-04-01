@@ -1,4 +1,4 @@
-package de.roman.toolio.security;
+package de.roman.toolio.model;
 
 import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.Offer;
@@ -21,6 +21,7 @@ public class AppUser {
     @Id
     private String id;
     private String name;
+    private String username; // Linked to Security Credentials
     private String address;
     private String email;
     private List<String> inquiryPartIDs;

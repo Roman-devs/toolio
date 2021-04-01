@@ -3,8 +3,8 @@ package de.roman.toolio.service;
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.UuidGenerator;
-import de.roman.toolio.security.AppUser;
-import de.roman.toolio.security.AppUserDb;
+import de.roman.toolio.model.AppUser;
+import de.roman.toolio.db.AppUserDb;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

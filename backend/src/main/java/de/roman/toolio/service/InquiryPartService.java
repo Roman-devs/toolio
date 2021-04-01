@@ -3,14 +3,12 @@ package de.roman.toolio.service;
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.UuidGenerator;
-import de.roman.toolio.security.AppUser;
-import de.roman.toolio.security.AppUserDb;
+import de.roman.toolio.model.AppUser;
+import de.roman.toolio.db.AppUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InquiryPartService {

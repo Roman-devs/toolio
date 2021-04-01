@@ -2,3 +2,6 @@ spring:
   data:
     mongodb:
       database: toolio
+security:
+  jwt:
+    secret: top-secret
