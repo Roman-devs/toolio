@@ -189,8 +189,8 @@ public class InquiryPartControllerTest {
                 .email("Hans@Mustermann.de")
                 .build();
         appUserDb.save(appUser);
-        // Add User with ID 5 to Database
-        HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
+
+        InquiryPart requestEntity =
                 InquiryPart.builder()
                         .partName("so")
                         .partDescription("cool")
@@ -199,11 +199,15 @@ public class InquiryPartControllerTest {
                         .height("35")
                         .material("S355")
                         .orderAmount("3")
-                        .build()
-        );
+                        .build();
         // WHEN
         when(uuidGenerator.generateRandomUuid()).thenReturn("345");
-        ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),requestEntity,InquiryPart.class);
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(requestEntity, headers);
+
+        ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),entity,InquiryPart.class);
 //        postResponse.getBody().setUuid("345");
         // THEN
         assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
@@ -234,16 +238,10 @@ public class InquiryPartControllerTest {
                 .orderAmount("3")
                 .build());
         // WHEN
-        HttpEntity<InquiryPart> entity = new HttpEntity<>(InquiryPart.builder()
-                .uuid("345")
-                .partName("so")
-                .partDescription("cool")
-                .length("35")
-                .width("35")
-                .height("35")
-                .material("S355")
-                .orderAmount("3")
-                .build());
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(headers);
         // WHEN
         ResponseEntity<InquiryPart> response = testRestTemplate.exchange(
                 getUrl() +"/345", HttpMethod.DELETE, entity, InquiryPart.class
