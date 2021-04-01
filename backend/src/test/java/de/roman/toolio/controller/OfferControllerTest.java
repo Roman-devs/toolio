@@ -2,9 +2,12 @@ package de.roman.toolio.controller;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.db.OfferDb;
+import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.Offer;
 import de.roman.toolio.model.UuidGenerator;
 import de.roman.toolio.db.AppUserDb;
+import de.roman.toolio.security.UserSecurityCredentials;
+import de.roman.toolio.security.UserSecurityCredentialsDb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,6 +48,12 @@ public class OfferControllerTest {
     @Autowired
     private AppUserDb appUserDb;
 
+    @Autowired
+    private UserSecurityCredentialsDb userSecurityCredentialsDb;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
     @BeforeEach
     public void setup() {
         inquiryPartDb.deleteAll();
@@ -53,6 +62,13 @@ public class OfferControllerTest {
 
     private String getUrl() {
         return "http://localhost:" + port + "/offers";
+    }
+
+    private String loginToApp() {
+        String password = encoder.encode("superSecretPassword");
+        userSecurityCredentialsDb.save(UserSecurityCredentials.builder().username("Roman").password(password).build());
+        ResponseEntity<String> loginResponse = testRestTemplate.postForEntity("http://localhost:" + port + "auth/login", new UserSecurityCredentials("Roman", "superSecretPassword"), String.class);
+        return loginResponse.getBody();
     }
 
     @Test
@@ -74,7 +90,12 @@ public class OfferControllerTest {
                 .expectedDeliveryDate("2021-05-16")
                 .build());
         //WHEN
-        ResponseEntity<Offer[]> response = testRestTemplate.getForEntity(getUrl(), Offer[].class);
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<Offer[]> response = testRestTemplate.exchange(getUrl(), HttpMethod.GET,entity, Offer[].class);
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), arrayContainingInAnyOrder(

@@ -6,6 +6,8 @@ import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.UuidGenerator;
 import de.roman.toolio.model.AppUser;
 import de.roman.toolio.db.AppUserDb;
+import de.roman.toolio.security.UserSecurityCredentials;
+import de.roman.toolio.security.UserSecurityCredentialsDb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -45,7 +48,13 @@ public class InquiryPartControllerTest {
     private InquiryPartDb inquiryPartDb;
 
     @Autowired
+    private UserSecurityCredentialsDb userSecurityCredentialsDb;
+
+    @Autowired
     private AppUserDb appUserDb;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     @BeforeEach
     public void setup() {
@@ -58,6 +67,12 @@ public class InquiryPartControllerTest {
 
 //    private final UuidGenerator uuidGenerator = mock(UuidGenerator.class);
 
+    private String loginToApp() {
+        String password = encoder.encode("superSecretPassword");
+        userSecurityCredentialsDb.save(UserSecurityCredentials.builder().username("Roman").password(password).build());
+        ResponseEntity<String> loginResponse = testRestTemplate.postForEntity("http://localhost:" + port + "auth/login", new UserSecurityCredentials("Roman", "superSecretPassword"), String.class);
+        return loginResponse.getBody();
+    }
 
     @Test
     @DisplayName("Get all Inquiries from the InquiryPartDb")
@@ -84,7 +99,12 @@ public class InquiryPartControllerTest {
                 .orderAmount("3")
                 .build());
         // When
-        ResponseEntity<InquiryPart[]> response = testRestTemplate.getForEntity(getUrl(), InquiryPart[].class);
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<InquiryPart[]> response = testRestTemplate.exchange(getUrl(), HttpMethod.GET, entity, InquiryPart[].class);
         // Then
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), arrayContainingInAnyOrder(
@@ -136,7 +156,12 @@ public class InquiryPartControllerTest {
                 .orderAmount("3")
                 .build());
         // When
-        ResponseEntity<InquiryPart> response = testRestTemplate.getForEntity(getUrl()+"/345", InquiryPart.class);
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<InquiryPart> response = testRestTemplate.exchange(getUrl()+"/345", HttpMethod.GET, entity, InquiryPart.class);
         // Then
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is(
@@ -164,8 +189,8 @@ public class InquiryPartControllerTest {
                 .email("Hans@Mustermann.de")
                 .build();
         appUserDb.save(appUser);
-        // Add User with ID 5 to Database
-        HttpEntity<InquiryPart> requestEntity = new HttpEntity<>(
+
+        InquiryPart requestEntity =
                 InquiryPart.builder()
                         .partName("so")
                         .partDescription("cool")
@@ -174,11 +199,15 @@ public class InquiryPartControllerTest {
                         .height("35")
                         .material("S355")
                         .orderAmount("3")
-                        .build()
-        );
+                        .build();
         // WHEN
         when(uuidGenerator.generateRandomUuid()).thenReturn("345");
-        ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),requestEntity,InquiryPart.class);
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(requestEntity, headers);
+
+        ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),entity,InquiryPart.class);
 //        postResponse.getBody().setUuid("345");
         // THEN
         assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
@@ -209,16 +238,10 @@ public class InquiryPartControllerTest {
                 .orderAmount("3")
                 .build());
         // WHEN
-        HttpEntity<InquiryPart> entity = new HttpEntity<>(InquiryPart.builder()
-                .uuid("345")
-                .partName("so")
-                .partDescription("cool")
-                .length("35")
-                .width("35")
-                .height("35")
-                .material("S355")
-                .orderAmount("3")
-                .build());
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<InquiryPart> entity = new HttpEntity<>(headers);
         // WHEN
         ResponseEntity<InquiryPart> response = testRestTemplate.exchange(
                 getUrl() +"/345", HttpMethod.DELETE, entity, InquiryPart.class
