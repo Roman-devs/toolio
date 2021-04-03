@@ -44,7 +44,7 @@ public class OfferService {
         return offerDb.findAllByOfferingUserId(postingUserId);
     }
 
-    public Optional<Offer> postNewOffer(OfferDTO offerDTO) {
+    public Optional<Offer> postNewOffer(OfferDTO offerDTO, String name) {
         String offerId = uuidgenerator.generateRandomUuid();
         Offer offerToBeAdded = Offer.builder()
                 .offerDescription(offerDTO.getOfferDescription())
