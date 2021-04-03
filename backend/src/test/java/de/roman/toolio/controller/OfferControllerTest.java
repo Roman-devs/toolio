@@ -2,9 +2,7 @@ package de.roman.toolio.controller;
 
 import de.roman.toolio.db.InquiryPartDb;
 import de.roman.toolio.db.OfferDb;
-import de.roman.toolio.model.InquiryPart;
-import de.roman.toolio.model.Offer;
-import de.roman.toolio.model.UuidGenerator;
+import de.roman.toolio.model.*;
 import de.roman.toolio.db.AppUserDb;
 import de.roman.toolio.security.UserSecurityCredentials;
 import de.roman.toolio.security.UserSecurityCredentialsDb;
@@ -20,9 +18,15 @@ import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class OfferControllerTest {
@@ -114,5 +118,75 @@ public class OfferControllerTest {
                         .expectedDeliveryDate("2021-05-16")
                         .build())
         );
+    }
+    @Test
+    @DisplayName("Adding a new offer should add to database")
+    public void postNewOffer(){
+        //GIVEN
+        InquiryPart inquiryPartForOffer = InquiryPart.builder()
+                .uuid("123")
+                .partName("Gear Wheel")
+                .partDescription("A Gear Wheel for testing")
+                .length("100")
+                .width("150")
+                .height("120")
+                .material("S355")
+                .orderAmount("2")
+                .latestDate("2021-04-15")
+                .earliestDate("2021-04-10")
+                .build();
+        inquiryPartDb.save(inquiryPartForOffer);
+        AppUser userThatPostedInquiry = AppUser.builder()
+                .id("3")
+                .name("Max")
+                .username("Mustermann")
+                .address("Musterstreet 25")
+                .email("muster@mann.de")
+                .inquiryPartIDs(new ArrayList<>(List.of("123")))
+                .build();
+        AppUser userThatMakesOffer = AppUser.builder()
+                .id("1")
+                .name("Roman")
+                .username("Kuite")
+                .address("Musterstreet 26")
+                .email("muster@mann.de")
+                .build();
+
+        appUserDb.save(userThatPostedInquiry);
+        appUserDb.save(userThatMakesOffer);
+        OfferDTO offerToBeAdded = OfferDTO.builder()
+                .offerDescription("An Offer made")
+                .offerFIATamount("200")
+                .expectedDeliveryDate("2021-04-15")
+                .offeringUserId("1")
+                .inquiryPartId("123")
+                .build();
+        //WHEN
+        when(uuidGenerator.generateRandomUuid()).thenReturn("123");
+        HttpHeaders headers = new HttpHeaders();
+        String token = loginToApp();
+        headers.setBearerAuth(token);
+        HttpEntity<OfferDTO> entity = new HttpEntity<>(offerToBeAdded, headers);
+        ResponseEntity<Offer> postResponse = testRestTemplate.postForEntity(getUrl(),entity,Offer.class);
+        //THEN
+        Offer expected = Offer.builder()
+                .offerId("123")
+                .inquiryPartId("123")
+                .ownerIdOfInquiry("3")
+                .offeringUserId("1")
+                .offerDescription("An Offer made")
+                .offerFIATamount("200")
+                .expectedDeliveryDate("2021-04-15")
+                .build();
+        AppUser updatedOwnerOfInquiry = userThatPostedInquiry.toBuilder()
+                .receivedOfferIDs(List.of("123"))
+                .build();
+        AppUser updatedOwnerOfOffer = userThatMakesOffer.toBuilder()
+                .madeOfferIDs(new ArrayList<>(List.of("123")))
+                .build();
+
+        assertEquals(expected, postResponse.getBody());
+        assertThat(appUserDb.findById("3").get(), is(updatedOwnerOfInquiry));
+        assertThat(appUserDb.findById("1").get(), is(updatedOwnerOfOffer));
     }
 }

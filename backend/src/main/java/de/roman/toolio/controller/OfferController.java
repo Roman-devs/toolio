@@ -5,6 +5,7 @@ import de.roman.toolio.model.OfferDTO;
 import de.roman.toolio.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -42,7 +43,7 @@ public class OfferController {
     }
 
     @PostMapping
-    public Offer postNewOffer(@RequestBody OfferDTO offerDto){
-        return offerService.postNewOffer(offerDto).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
+    public Offer postNewOffer(@RequestBody OfferDTO offerDto, Authentication authentication){
+        return offerService.postNewOffer(offerDto, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
     }
 }

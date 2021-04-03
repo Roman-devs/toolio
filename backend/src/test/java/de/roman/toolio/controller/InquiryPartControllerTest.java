@@ -8,6 +8,7 @@ import de.roman.toolio.model.AppUser;
 import de.roman.toolio.db.AppUserDb;
 import de.roman.toolio.security.UserSecurityCredentials;
 import de.roman.toolio.security.UserSecurityCredentialsDb;
+import de.roman.toolio.service.InquiryPartService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +27,7 @@ import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InquiryPartControllerTest {
@@ -59,6 +59,8 @@ public class InquiryPartControllerTest {
     @BeforeEach
     public void setup() {
         inquiryPartDb.deleteAll();
+        appUserDb.deleteAll();
+        userSecurityCredentialsDb.deleteAll();
     }
 
     private String getUrl() {
@@ -69,8 +71,8 @@ public class InquiryPartControllerTest {
 
     private String loginToApp() {
         String password = encoder.encode("superSecretPassword");
-        userSecurityCredentialsDb.save(UserSecurityCredentials.builder().username("Roman").password(password).build());
-        ResponseEntity<String> loginResponse = testRestTemplate.postForEntity("http://localhost:" + port + "auth/login", new UserSecurityCredentials("Roman", "superSecretPassword"), String.class);
+        userSecurityCredentialsDb.save(UserSecurityCredentials.builder().username("Mustermann").password(password).build());
+        ResponseEntity<String> loginResponse = testRestTemplate.postForEntity("http://localhost:" + port + "auth/login", new UserSecurityCredentials("Mustermann", "superSecretPassword"), String.class);
         return loginResponse.getBody();
     }
 
@@ -186,6 +188,7 @@ public class InquiryPartControllerTest {
                 .id("5")
                 .address("Strese165")
                 .name("Hans")
+                .username("Mustermann")
                 .email("Hans@Mustermann.de")
                 .build();
         appUserDb.save(appUser);
@@ -206,7 +209,6 @@ public class InquiryPartControllerTest {
         String token = loginToApp();
         headers.setBearerAuth(token);
         HttpEntity<InquiryPart> entity = new HttpEntity<>(requestEntity, headers);
-
         ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),entity,InquiryPart.class);
 //        postResponse.getBody().setUuid("345");
         // THEN

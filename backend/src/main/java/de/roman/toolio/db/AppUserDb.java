@@ -8,4 +8,6 @@ import java.util.List;
 public interface AppUserDb extends PagingAndSortingRepository<AppUser, String> {
     List<AppUser> findAll();
     AppUser findByInquiryPartIDsContaining(String inquiryPartId);
+
+    AppUser findAppUserByUsername(String username);
 }

@@ -28,10 +28,28 @@ public class AppUser {
     private List<String> receivedOfferIDs;
     private List<String> madeOfferIDs;
 
+    public List<String> getMadeOfferIDs() {
+        if(this.madeOfferIDs == null){
+            return new ArrayList<>();
+        }
+        return madeOfferIDs;
+    }
+
+
+
+
+
     public List<String> getInquiryPartIDs() {
         if(this.inquiryPartIDs == null){
             return new ArrayList<>();
         }
         return inquiryPartIDs;
+    }
+
+    public List<String> getReceivedOfferIDs() {
+        if(this.receivedOfferIDs == null){
+            return new ArrayList<>();
+        }
+        return receivedOfferIDs;
     }
 }
