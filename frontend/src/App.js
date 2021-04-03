@@ -8,29 +8,35 @@ import {
 } from "react-router-dom";
 import CreateNewInquiry from "./pages/CreateNewInquiry";
 import InquiryDetails from "./pages/InquiryDetails";
+import AuthProvider from "./auth/AuthProvider";
+import Login from "./pages/Login";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 
 function App() {
     return (
-        <>
+        <AuthProvider>
             <GlobalStyle/>
             <Router>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/login">
+                        <Login/>
+                    </Route>
+                    <ProtectedRoute exact path="/">
                         <InquiryOverview/>
-                    </Route>
-                    <Route path="/newInquiry">
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/newInquiry">
                         <CreateNewInquiry />
-                    </Route>
-                    <Route path="/inquiryDetails/:uuid">
+                    </ProtectedRoute>
+                    <ProtectedRoute path="/inquiryDetails/:uuid">
                         <InquiryDetails/>
-                    </Route>
+                    </ProtectedRoute>
                     <div>
                         <InquiryOverview/>
                     </div>
                 </Switch>
             </Router>
-        </>
+        </AuthProvider>
     );
 }
 
