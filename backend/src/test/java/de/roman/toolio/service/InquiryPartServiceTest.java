@@ -5,6 +5,7 @@ import de.roman.toolio.model.InquiryPart;
 import de.roman.toolio.model.UuidGenerator;
 import de.roman.toolio.model.AppUser;
 import de.roman.toolio.db.AppUserDb;
+import de.roman.toolio.security.UserSecurityCredentialsDb;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,7 @@ class InquiryPartServiceTest {
     private final InquiryPartDb inquiryPartDb = mock(InquiryPartDb.class);
     private final AppUserDb appUserDb = mock(AppUserDb.class);
     private final UuidGenerator uuidGenerator = mock(UuidGenerator.class);
+    private final UserSecurityCredentialsDb userSecurityCredentialsDb = mock(UserSecurityCredentialsDb.class);
     private final InquiryPartService inquiryPartService = new InquiryPartService(inquiryPartDb, appUserDb, uuidGenerator);
 
     @Test
@@ -101,21 +103,33 @@ class InquiryPartServiceTest {
                 .build();
 
         when(uuidGenerator.generateRandomUuid()).thenReturn("123");
-        when(appUserDb.findById("5")).thenReturn(
-                Optional.of(AppUser.builder()
+        when(appUserDb.findAppUserByUsername("Mustermann")).thenReturn(
+                AppUser.builder()
                         .id("5")
+                        .username("Mustermann")
                         .email("max@mustermann.de")
                         .address("Musterstrasse 1")
                         .name("Max Mustermann")
                         .inquiryPartIDs(new ArrayList<>())
-                        .build()));
+                        .build());
         AppUser mockUser = AppUser.builder()
-                .id("1")
+                .id("5")
+                .username("Mustermann")
                 .email("max@mustermann.de")
                 .address("Musterstrasse 1")
                 .name("Max Mustermann")
                 .inquiryPartIDs(new ArrayList<>())
                 .build();
+        when(appUserDb.existsById("5")).thenReturn(true);
+        when(appUserDb.findById("5")).thenReturn(
+                Optional.of(AppUser.builder()
+                .id("5")
+                .username("Mustermann")
+                .email("max@mustermann.de")
+                .address("Musterstrasse 1")
+                .name("Max Mustermann")
+                .inquiryPartIDs(new ArrayList<>())
+                .build()));
         when(appUserDb.save(mockUser)).thenReturn(mockUser);
         //WHEN
         when(inquiryPartDb.save(inquiryPartToBeAdded)).thenReturn(InquiryPart.builder()
@@ -130,7 +144,7 @@ class InquiryPartServiceTest {
                 .earliestDate("2021-04-15")
                 .latestDate("2021-08-19")
                 .build());
-        InquiryPart actual = inquiryPartService.addInquiry(inquiryPartToBeAdded, "5");
+        Optional<InquiryPart> actual = inquiryPartService.addInquiry(inquiryPartToBeAdded, "Mustermann");
         //THEN
         InquiryPart expectedPart = InquiryPart.builder()
                 .uuid("123")
@@ -144,13 +158,13 @@ class InquiryPartServiceTest {
                 .earliestDate("2021-04-15")
                 .latestDate("2021-08-19")
                 .build();
-        assertThat(actual, is(expectedPart));
+        assertThat(actual, is(Optional.of(expectedPart)));
         verify(inquiryPartDb).save(inquiryPartToBeAdded);
     }
 
     @Test
     @DisplayName("Delete Inquiry From Database")
-    public void deleteInquiryFromDatabase(){
+    public void deleteInquiryFromDatabase() {
         //WHEN
         inquiryPartService.deleteInquiryFromDatabase("123");
         //THEN
