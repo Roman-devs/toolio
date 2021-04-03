@@ -59,6 +59,8 @@ public class InquiryPartControllerTest {
     @BeforeEach
     public void setup() {
         inquiryPartDb.deleteAll();
+        appUserDb.deleteAll();
+        userSecurityCredentialsDb.deleteAll();
     }
 
     private String getUrl() {
@@ -210,6 +212,7 @@ public class InquiryPartControllerTest {
         ResponseEntity<InquiryPart> postResponse = testRestTemplate.postForEntity(getUrl(),entity,InquiryPart.class);
 //        postResponse.getBody().setUuid("345");
         // THEN
+        assertThat(postResponse.getStatusCode(), is(HttpStatus.OK));
         assertEquals(InquiryPart.builder()
                 .uuid("345")
                 .partName("so")
