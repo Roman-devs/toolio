@@ -34,7 +34,7 @@ public class InquiryPartController {
 
     @PostMapping
     public InquiryPart addInquiry(@RequestBody InquiryPart inquiryPartToBeAdded, Authentication authentication){
-        return this.inquiryPartService.addInquiry(inquiryPartToBeAdded, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
+        return this.inquiryPartService.addInquiry(inquiryPartToBeAdded, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
     }
 
     @DeleteMapping("{id}")
