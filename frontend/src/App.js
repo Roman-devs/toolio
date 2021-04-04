@@ -22,15 +22,15 @@ function App() {
                     <Route exact path="/login">
                         <Login/>
                     </Route>
+                    <Route exact path="/newInquiry">
+                        <CreateNewInquiry />
+                    </Route>
                     <ProtectedRoute exact path="/">
                         <InquiryOverview/>
                     </ProtectedRoute>
-                    <ProtectedRoute path="/newInquiry">
-                        <CreateNewInquiry />
-                    </ProtectedRoute>
-                    <ProtectedRoute path="/inquiryDetails/:uuid">
+                    <Route path="/inquiryDetails/:uuid">
                         <InquiryDetails/>
-                    </ProtectedRoute>
+                    </Route>
                     <div>
                         <InquiryOverview/>
                     </div>
