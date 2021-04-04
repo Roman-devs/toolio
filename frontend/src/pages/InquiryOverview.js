@@ -4,9 +4,11 @@ import styled from 'styled-components/macro';
 import InquiryList from "../components/InquiryList";
 import BurgerMenu from "../components/BurgerMenu";
 import TopBar from "../components/TopBar";
+import {useAuth} from "../auth/AuthContext";
 
 export default function InquiryOverview() {
     const [inquiries, setInquiries] = useState([])
+    const{ token } = useAuth();
 
     useEffect(() => {
         getInquiries()
