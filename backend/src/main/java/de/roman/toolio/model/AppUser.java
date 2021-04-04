@@ -35,10 +35,6 @@ public class AppUser {
         return madeOfferIDs;
     }
 
-
-
-
-
     public List<String> getInquiryPartIDs() {
         if(this.inquiryPartIDs == null){
             return new ArrayList<>();
