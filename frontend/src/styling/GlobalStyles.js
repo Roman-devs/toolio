@@ -5,6 +5,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  html{
+    text-align: center;
+  }
 `
 
 export default GlobalStyle;

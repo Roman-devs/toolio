@@ -6,7 +6,7 @@ const TopBar = ()=>{
     return(
         <TopBarContainer>
             <div className="left"> PLACEHOLDER </div>
-            <div className="center"> LOGO </div>
+            <Image className="center"> <img src={process.env.PUBLIC_URL + '/pictures/TooLioLogo.png'} alt="Logo"/></Image>
             <div className="right"> SEARCHBAR </div>
         </TopBarContainer>
     )
@@ -18,7 +18,7 @@ const TopBarContainer = styled.div`
   justify-content: space-around;
   width: 100%;
   padding-top: 1.25rem;
-  height: 2.5rem;
+  height: 5.0rem;
   
   font-family: "Courier New", arial, sans-serif;
 
@@ -36,5 +36,11 @@ const TopBarContainer = styled.div`
 
   
 `
-
+export const Image = styled.div`
+  img{
+    height: 4rem;
+    vertical-align: center;
+    
+  }
+`
 export default TopBar

@@ -11,18 +11,18 @@ const Menu = ({open}) => {
                 Hi Roman!
             </MenuHeader>
             <MenuCategory>
-                <a href="/">
+                <Link to="/">
                     <span aria-label="Show All Inquiries">Show All Inquiries</span>
-                </a>
-                <a>
+                </Link>
+                <Link>
                     <span aria-label="My Inquiries">My Inquiries</span>
-                </a>
-                <a>
+                </Link>
+                <Link>
                     <span aria-label="Offers Made">Offers Made</span>
-                </a>
-                <a href="/newInquiry">
+                </Link>
+                <Link to="/newInquiry">
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
-                </a>
+                </Link>
             </MenuCategory>
         </StyledMenu>
     )
