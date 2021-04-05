@@ -43,7 +43,10 @@ const PageLayoutContainer = styled.div`
 `
 
 const InquiryContainer = styled.div`
+  display: flex;
   overflow-y: scroll;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 `
 
 const Content = styled.div`

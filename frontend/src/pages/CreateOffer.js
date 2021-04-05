@@ -44,6 +44,8 @@ const OfferContainer = styled.div`
   overflow-y: scroll;
   display: flex;
   flex-direction: row;
+flex-wrap: wrap;
+  justify-content: space-evenly;
 `
 
 const Content = styled.div`
