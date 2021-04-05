@@ -1,4 +1,6 @@
 import styled from "styled-components/macro";
+import {CardButton} from "../styling/CardStyling";
+import {Link} from "react-router-dom";
 
 export default function InquiryDetailsItem({inquiry}) {
 
@@ -42,6 +44,12 @@ export default function InquiryDetailsItem({inquiry}) {
                 {inquiry.latestDate}
             </li>
 
+            <li>
+                <Link to={`/inquiryDetails/makeOffer/${inquiry.uuid}`}>
+                    <CardButton> Make An Offer! </CardButton>
+                </Link>
+            </li>
+
 
         </List>
 
@@ -58,10 +66,11 @@ const List = styled.ul`
   font-family: "Courier New", arial, sans-serif;
   margin: 7.5rem;
 
-  
+
   .name {
     background-color: cornflowerblue;
   }
+
   .id {
     background-color: aqua;
   }

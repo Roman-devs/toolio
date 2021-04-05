@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class OfferDTO {
-    private String offerDescription;
-    private String offerFIATamount;
-    private String expectedDeliveryDate;
-    private String offeringUserId;
-    private String inquiryPartId;
+    private String offerDescription; // From Frontend
+    private String offerFIATamount; // From Frontend
+    private String expectedDeliveryDate; // From Frontend
+    private String offeringUserId;  // Created in Backend after check with DB
+    private String inquiryPartId;   // From Frontend
 }

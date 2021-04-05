@@ -11,6 +11,7 @@ import InquiryDetails from "./pages/InquiryDetails";
 import AuthProvider from "./auth/AuthProvider";
 import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import CreateOffer from "./pages/CreateOffer";
 
 
 function App() {
@@ -22,11 +23,14 @@ function App() {
                     <Route exact path="/login">
                         <Login/>
                     </Route>
-                    <ProtectedRoute path="/newInquiry">
+                    <ProtectedRoute exact path="/newInquiry">
                         <CreateNewInquiry />
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/inquiryDetails/:uuid">
                         <InquiryDetails/>
+                    </ProtectedRoute>
+                    <ProtectedRoute exact path="/inquiryDetails/makeOffer/:inquiryPartId">
+                        <CreateOffer/>
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/">
                         <InquiryOverview/>

@@ -24,7 +24,7 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                            minLength: 1,
                            maxLength: 14,
                        })}/>
-                {errors.name && "Required"}
+                {errors.partName && "Required"}
 
                 <label>Product Description [mm]</label>
                 <input name="partDescription"
