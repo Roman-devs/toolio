@@ -3,7 +3,7 @@ import TopBar from "../components/TopBar";
 import InquiryList from "../components/InquiryList";
 import { React, useEffect, useState } from 'react'
 import styled from "styled-components/macro";
-import {useParams} from "react-router";
+import {useParams} from "react-router-dom";
 import {getInquiryById} from "../services/inquiryService";
 import InquiryCard from "../components/InquiryCard";
 import InquiryDetailsItem from "../components/InquiryDetailsItem";

@@ -3,7 +3,7 @@ import {Styles} from "../styling/FormStyling";
 import {getOffers, postOffer} from "../services/offerService";
 import React, {useEffect, useState} from "react";
 import moment from "moment";
-import {useParams} from "react-router";
+import {useParams} from "react-router-dom";
 
 
 export default function CreateOffer() {
@@ -31,6 +31,7 @@ export default function CreateOffer() {
     return (
         <Styles>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <h1> Make an Offer </h1>
                 <label> Please specify your Offer with a short message: </label>
                 <input name="offerDescription"
                        ref={register({
@@ -60,3 +61,4 @@ export default function CreateOffer() {
         </Styles>
     )
 }
+
