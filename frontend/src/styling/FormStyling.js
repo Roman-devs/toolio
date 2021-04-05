@@ -5,7 +5,15 @@ export const Styles = styled.div`
   padding: 20px;
   font-family: "Courier New", arial, sans-serif;
   text-align: center;
-
+  .offerDescription{
+    line-height: 10rem;
+  }
+  .partDescription{
+    line-height: 10rem;
+  }
+  label{
+    padding-top: 15px;
+  }
   h1 {
     line-height: 100%;
     font-weight: bold;
@@ -33,6 +41,7 @@ export const Styles = styled.div`
     padding: 10px;
     width: 100%;
     text-align: center;
+    
   }
 
   label {
@@ -71,4 +80,7 @@ export const Styles = styled.div`
       box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
       transform: translate(0, -1px);
     }
+    
+    
+  }
 `;

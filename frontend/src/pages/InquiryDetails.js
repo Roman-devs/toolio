@@ -11,10 +11,10 @@ import InquiryDetailsItem from "../components/InquiryDetailsItem";
 
 export default function InquiryDetails(){
     const [inquiry, setInquiry] = useState("")
-    const {uuid} = useParams();
+    const {inquiryPartId} = useParams();
 
     useEffect(()=>{
-        getInquiryById(uuid).then(setInquiry)
+        getInquiryById(inquiryPartId).then(setInquiry)
 
     })
 
@@ -25,7 +25,7 @@ export default function InquiryDetails(){
                 <Content>
                     <TopBar/>
                     <InquiryContainer>
-                        {inquiry && <InquiryDetailsItem inquiry={inquiry}/>}
+                        {inquiry && <InquiryDetailsItem inquiry={inquiry} makeOffer={false}/>}
                     </InquiryContainer>
                 </Content>
                 {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}

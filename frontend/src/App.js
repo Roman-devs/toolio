@@ -11,6 +11,7 @@ import InquiryDetails from "./pages/InquiryDetails";
 import AuthProvider from "./auth/AuthProvider";
 import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import CreateOfferForm from "./components/CreateOfferForm";
 import CreateOffer from "./pages/CreateOffer";
 
 
@@ -26,7 +27,7 @@ function App() {
                     <ProtectedRoute exact path="/newInquiry">
                         <CreateNewInquiry />
                     </ProtectedRoute>
-                    <ProtectedRoute exact path="/inquiryDetails/:uuid">
+                    <ProtectedRoute exact path="/inquiryDetails/:inquiryPartId">
                         <InquiryDetails/>
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/inquiryDetails/makeOffer/:inquiryPartId">
