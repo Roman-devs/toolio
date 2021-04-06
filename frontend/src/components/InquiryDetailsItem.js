@@ -25,9 +25,9 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
             <ProductDescription>
                 Offer-ID: {inquiry.uuid}
             </ProductDescription>
-            <ProductDescription>
+            <ProductDetailsDescription>
                 {inquiry.partDescription}
-            </ProductDescription>
+            </ProductDetailsDescription>
             <ProductDimensionsWrapper>
                 <ProductDimension>
                     <h1>Length [mm]</h1>
@@ -90,5 +90,19 @@ export const CardDetailsWrapper = styled.div`
   text-align: center;
   vertical-align: center;
   background: white;
+`
+
+export const ProductDetailsDescription = styled.div`
+  padding-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 45px;
+  display: -webkit-box;
+  text-align: center;
+  padding-right: 25px;
+  padding-left: 25px;
+  max-height: 100px;
+  font-size: 0.85em;
+  line-height: 85%;
 `
 

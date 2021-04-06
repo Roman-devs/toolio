@@ -17,8 +17,8 @@ const Menu = ({open}) => {
                 <Link>
                     <span aria-label="My Inquiries">My Inquiries</span>
                 </Link>
-                <Link>
-                    <span aria-label="Offers Made">Offers Made</span>
+                <Link to="/myreceivedoffers">
+                    <span aria-label="Offers Made">Received Offers</span>
                 </Link>
                 <Link to="/newInquiry">
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>

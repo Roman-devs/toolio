@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import {Styles} from "../styling/FormStyling";
-import {getOffers, postOffer} from "../services/offerService";
+import {getAllOffers, postOffer} from "../services/offerService";
 import React, {useEffect, useState} from "react";
 import moment from "moment";
 import {useParams} from "react-router-dom";
@@ -13,7 +13,7 @@ export default function CreateOfferForm() {
     const {inquiryPartId} = useParams();
 
     useEffect(() => {
-        getOffers()
+        getAllOffers()
             .then(setOffers)
             .catch((error) => console.error(error))
     }, [])

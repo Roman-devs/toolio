@@ -81,4 +81,9 @@ public class OfferService {
         return Optional.empty();
 
     }
+
+    public List<Offer> getReceivedOffersByUserAuth(String usernameFromAuth) {
+        AppUser authUser = appUserDb.findAppUserByUsername(usernameFromAuth);
+        return offerDb.findAllByOwnerIdOfInquiry(authUser.getId());
+    }
 }

@@ -37,6 +37,11 @@ public class OfferController {
         return offerService.getReceivedOffersByUserId(userId);
     }
 
+    @GetMapping("myoffers")
+    public List<Offer> getReceivedOffersByJwtAuth(Authentication authentication){
+        return offerService.getReceivedOffersByUserAuth(authentication.getName());
+    }
+
     @GetMapping("poster/{postingUserId}")
     public List<Offer> getReceivedOffersByPosterId(@PathVariable String postingUserId){
         return offerService.getReceivedOffersByPostingUserId(postingUserId);
