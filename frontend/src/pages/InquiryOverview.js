@@ -28,7 +28,7 @@ export default function InquiryOverview() {
             <PageLayoutContainer>
                 <BurgerMenu/>
                 <Content>
-                    <TopBar/>
+                    <TopBar Route="All Inquiries"/>
                     <InquiriesContainer>
                         {inquiries && <InquiryList inquiries={inquiries}/>}
                     </InquiriesContainer>

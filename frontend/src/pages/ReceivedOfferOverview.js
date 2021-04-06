@@ -1,16 +1,16 @@
 import {useState, useEffect} from "react";
-import {getAllOffersByAuth} from "../services/offerService";
+import {getAllReceivedOffersByAuth} from "../services/offerService";
 import BurgerMenu from "../components/BurgerMenu";
 import TopBar from "../components/TopBar";
 import InquiryList from "../components/InquiryList";
 import styled from "styled-components/macro";
 import OfferList from "../components/OfferList";
 
-export default function OfferOverview(){
+export default function ReceivedOfferOverview(){
     const [offers, setOffers] = useState([])
 
     useEffect(()=> {
-        getAllOffersByAuth()
+        getAllReceivedOffersByAuth()
             .then(setOffers)
     },[])
 
@@ -19,7 +19,7 @@ export default function OfferOverview(){
             <PageLayoutContainer>
                 <BurgerMenu/>
                 <Content>
-                    <TopBar/>
+                    <TopBar Route="Received Offers"/>
                     <OfferContainer>
                         {offers && <OfferList offers={offers}/>}
                     </OfferContainer>

@@ -2,7 +2,7 @@ import axios from 'axios'
 import axiosConfig from "./axiosConfig";
 
 const offerUrl = "/offers"
-const byAuth = "myoffers"
+const byAuth = "receivedoffers"
 axios.defaults.headers.common = {
     "Content-Type": "application/json"
 }
@@ -12,7 +12,7 @@ export const postOffer = (offerDTO) =>
         .post(offerUrl, offerDTO)
         .then((response) => response.data);
 
-export const getAllOffersByAuth = () =>
+export const getAllReceivedOffersByAuth = () =>
     axiosConfig.axiosInstance
         .get(`${offerUrl}/${byAuth}`).then((response) => response.data)
 

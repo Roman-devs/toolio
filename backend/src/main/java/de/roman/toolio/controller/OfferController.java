@@ -32,14 +32,14 @@ public class OfferController {
         return offerService.getOfferById(offerId);
     }
 
-    @GetMapping("owner/{userId}")
-    public List<Offer> getReceivedOffersByUserId(@PathVariable String userId){
-        return offerService.getReceivedOffersByUserId(userId);
-    }
-
-    @GetMapping("myoffers")
+    @GetMapping("receivedoffers")
     public List<Offer> getReceivedOffersByJwtAuth(Authentication authentication){
         return offerService.getReceivedOffersByUserAuth(authentication.getName());
+    }
+
+    @GetMapping("madeOffers")
+    public List<Offer> getMadeOffersByJwtAuth(Authentication authentication){
+        return offerService.getMadeOffersByUserAuth(authentication.getName());
     }
 
     @GetMapping("poster/{postingUserId}")

@@ -32,9 +32,7 @@ public class OfferService {
         return offerDb.findById(offerId).get();
     }
 
-    public List<Offer> getReceivedOffersByUserId(String userId) {
-        return offerDb.findAllByOwnerIdOfInquiry(userId);
-    }
+
 
     public List<Offer> getAllOffersOfDatabase() {
         return offerDb.findAll();
@@ -85,5 +83,10 @@ public class OfferService {
     public List<Offer> getReceivedOffersByUserAuth(String usernameFromAuth) {
         AppUser authUser = appUserDb.findAppUserByUsername(usernameFromAuth);
         return offerDb.findAllByOwnerIdOfInquiry(authUser.getId());
+    }
+
+    public List<Offer> getMadeOffersByUserAuth(String usernameFromAuth) {
+        AppUser authUser = appUserDb.findAppUserByUsername(usernameFromAuth);
+        return offerDb.findAllByOfferingUserId(authUser.getId());
     }
 }

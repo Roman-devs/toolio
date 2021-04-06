@@ -13,7 +13,8 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import CreateOfferForm from "./components/CreateOfferForm";
 import CreateOffer from "./pages/CreateOffer";
-import OfferOverview from "./pages/OfferOverview";
+import OfferOverview from "./pages/ReceivedOfferOverview";
+import ReceivedOfferOverview from "./pages/ReceivedOfferOverview";
 
 
 function App() {
@@ -29,7 +30,10 @@ function App() {
                         <CreateNewInquiry />
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/myreceivedoffers">
-                        <OfferOverview/>
+                        <ReceivedOfferOverview/> // TODO: Styling and cards
+                    </ProtectedRoute>
+                    <ProtectedRoute exact path="/madeoffers">
+                        {/*<MadeOfferOverview/> //TODO: Everything  */}
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/inquiryDetails/:inquiryPartId">
                         <InquiryDetails/>

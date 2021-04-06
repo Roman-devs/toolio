@@ -12,13 +12,16 @@ const Menu = ({open}) => {
             </MenuHeader>
             <MenuCategory>
                 <Link to="/">
-                    <span aria-label="Show All Inquiries">Show All Inquiries</span>
+                    <span aria-label="Show All Inquiries">All Inquiries</span>
                 </Link>
                 <Link>
                     <span aria-label="My Inquiries">My Inquiries</span>
                 </Link>
                 <Link to="/myreceivedoffers">
-                    <span aria-label="Offers Made">Received Offers</span>
+                    <span aria-label="Offers Received">Offers Received</span>
+                </Link>
+                <Link to="/madeoffers">
+                    <span aria-label="Offers Made">Offers Made</span>
                 </Link>
                 <Link to="/newInquiry">
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
