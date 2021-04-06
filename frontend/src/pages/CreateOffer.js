@@ -15,7 +15,7 @@ export default function CreateOffer(){
     useEffect(()=>{
         getInquiryById(inquiryPartId)
             .then(setInquiry);
-    })
+    },[])
 
     return(
         <PageLayoutContainer>

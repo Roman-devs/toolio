@@ -15,8 +15,7 @@ export default function InquiryDetails(){
 
     useEffect(()=>{
         getInquiryById(inquiryPartId).then(setInquiry)
-
-    })
+    },[])
 
     return(
 

@@ -46,6 +46,9 @@ public class OfferService {
 
     public Optional<Offer> postNewOffer(OfferDTO offerDTO, String name) {
         String offerId = uuidgenerator.generateRandomUuid();
+        // name: 'Max' in UserSecurityCredentials
+        String offeringUserId = appUserDb.findAppUserByUsername(name).getId();
+        offerDTO.setOfferingUserId(offeringUserId);
         Offer offerToBeAdded = Offer.builder()
                 .offerDescription(offerDTO.getOfferDescription())
                 .offerFIATamount(offerDTO.getOfferFIATamount())
@@ -53,7 +56,7 @@ public class OfferService {
                 .offerId(offerId)
                 .inquiryPartId(offerDTO.getInquiryPartId())
                 .ownerIdOfInquiry("")
-                .offeringUserId(offerDTO.getOfferingUserId())
+                .offeringUserId(offerDTO.getOfferingUserId()) // TODO
                 .build();
         if (inquiryPartDb.existsById(offerDTO.getInquiryPartId())) {
             // UPDATE THE USER THAT IS THE OWNER OF THE INQUIRY WITH THE OFFER ID THAT IS POSTED
@@ -62,7 +65,7 @@ public class OfferService {
             updatedListOfReceivedOffers.add(offerId);
             AppUser updatedOwnerofInquiry = ownerOfInquiry.toBuilder().receivedOfferIDs(updatedListOfReceivedOffers).build();
             // UPDATE THE USER THAT IS POSTING THE OFFER WITH THE OFFER ID THAT IS POSTED
-            AppUser postingUserOfOffer = appUserDb.findById(offerDTO.getOfferingUserId()).get();
+            AppUser postingUserOfOffer = appUserDb.findById(offerDTO.getOfferingUserId()).get(); // TODO
             List<String> updatedListOfMadeOffers = postingUserOfOffer.getMadeOfferIDs();
             updatedListOfMadeOffers.add(offerId);
             AppUser updatedOfferingUser = postingUserOfOffer.toBuilder().madeOfferIDs(updatedListOfMadeOffers).build();
