@@ -20,14 +20,13 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                 <label>Product Name</label>
                 <input name="partName"
                        ref={register({
-                           required: true,
-                           minLength: 1,
-                           maxLength: 14,
+                           required: true
                        })}/>
-                {errors.name && "Required"}
+                {errors.partName && "Required"}
 
                 <label>Product Description [mm]</label>
-                <input name="partDescription"
+                <input className="partDescription"
+                       name="partDescription"
                        ref={register({required: true})}/>
                 {errors.partDescription && "Required"}
 

@@ -37,6 +37,11 @@ public class OfferController {
         return offerService.getReceivedOffersByUserId(userId);
     }
 
+    @GetMapping("myoffers")
+    public List<Offer> getReceivedOffersByJwtAuth(Authentication authentication){
+        return offerService.getReceivedOffersByUserAuth(authentication.getName());
+    }
+
     @GetMapping("poster/{postingUserId}")
     public List<Offer> getReceivedOffersByPosterId(@PathVariable String postingUserId){
         return offerService.getReceivedOffersByPostingUserId(postingUserId);
@@ -44,6 +49,6 @@ public class OfferController {
 
     @PostMapping
     public Offer postNewOffer(@RequestBody OfferDTO offerDto, Authentication authentication){
-        return offerService.postNewOffer(offerDto, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Inquiry does not exist anymore"));
+        return offerService.postNewOffer(offerDto, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Inquiry does not exist anymore"));
     }
 }

@@ -1,84 +1,108 @@
 import styled from "styled-components/macro";
+import {
+    CardButton,
+    CardImage,
+    CardWrapper,
+    ProductDescription,
+    ProductDimension,
+    ProductDimensionsWrapper, ProductName
+} from "../styling/CardStyling";
+import {Link} from "react-router-dom";
 
-export default function InquiryDetailsItem({inquiry}) {
+export default function InquiryDetailsItem({inquiry, makeOffer}) {
+
 
     return (
 
-        <List>
-            <li className="picture">
-                <h1>
-                    PLACEHOLDER FOR PICTURE
-                </h1>
-            </li>
+        <CardDetailsWrapper>
+            <CardImage className="picture">
+                <img src={process.env.PUBLIC_URL + '/pictures/CardHeaderTemplate.png'} alt="Template"/>
+            </CardImage>
 
-            <li className="name">
+            <ProductName>
                 <h1>{inquiry.partName}</h1>
-            </li>
-            <li className="id">
+            </ProductName>
+            <ProductDescription>
                 Offer-ID: {inquiry.uuid}
-            </li>
-            <li>
+            </ProductDescription>
+            <ProductDetailsDescription>
                 {inquiry.partDescription}
-            </li>
-            <li>
-                {inquiry.length}
-            </li>
-            <li>
-                {inquiry.width}
-            </li>
-            <li>
-                {inquiry.height}
-            </li>
-            <li>
-                {inquiry.material}
-            </li>
-            <li>
-                {inquiry.orderAmount}
-            </li>
-            <li>
-                {inquiry.earliestDate}
-            </li>
-            <li>
-                {inquiry.latestDate}
-            </li>
+            </ProductDetailsDescription>
+            <ProductDimensionsWrapper>
+                <ProductDimension>
+                    <h1>Length [mm]</h1>
+                    <p>{inquiry.length}</p>
+                </ProductDimension>
+                <ProductDimension>
+                    <h1>Width [mm]</h1>
+                    <p>{inquiry.width}</p>
+                </ProductDimension>
+                <ProductDimension>
+                    <h1>Height [mm]</h1>
+                    <p>{inquiry.height}</p>
+                </ProductDimension>
+            </ProductDimensionsWrapper>
+            <ProductDimensionsWrapper>
+                <ProductDimension>
+                    <h1>Material</h1>
+                    <p>{inquiry.material}</p>
+                </ProductDimension>
+                <ProductDimension>
+                    <h1>Amount</h1>
+                    <p>{inquiry.orderAmount}</p>
+                </ProductDimension>
+
+            </ProductDimensionsWrapper>
+            <ProductName>
+                <h2>Desired Delivery Date</h2>
+            </ProductName>
+            <ProductDimensionsWrapper>
+                <ProductDimension>
+                    <h1>Earliest</h1>
+                    <p>{inquiry.earliestDate}</p>
+                </ProductDimension>
+                <ProductDimension>
+                    <h1>Latest</h1>
+                    {inquiry.latestDate}
+                </ProductDimension>
+            </ProductDimensionsWrapper>
+            {!makeOffer &&
+                <Link to={`/inquiryDetails/makeOffer/${inquiry.uuid}`}>
+                    <CardButton> Make An Offer! </CardButton>
+                </Link>
+                }
 
 
-        </List>
+
+        </CardDetailsWrapper>
 
     )
 }
 
-const List = styled.ul`
-
-  background: whitesmoke;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  list-style: none;
+export const CardDetailsWrapper = styled.div`
+  overflow: hidden;
+  padding: 0 0 25px;
+  margin: 20px;
+  width: 500px;
   font-family: "Courier New", arial, sans-serif;
-  margin: 7.5rem;
-
-  
-  .name {
-    background-color: cornflowerblue;
-  }
-  .id {
-    background-color: aqua;
-  }
-
-  .picture {
-    background-color: darkkhaki;
-
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      opacity: 0.7;
-      object-fit: contain;
-      padding-bottom: 25px;
-    }
-  }
-
-  li {
-    text-align: center;
-  }
+  border-radius: 15px;
+  box-shadow: 0 0 20px darkgrey;
+  text-align: center;
+  vertical-align: center;
+  background: white;
 `
+
+export const ProductDetailsDescription = styled.div`
+  padding-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 45px;
+  display: -webkit-box;
+  text-align: center;
+  padding-right: 25px;
+  padding-left: 25px;
+  max-height: 100px;
+  font-size: 0.85em;
+  line-height: 85%;
+`
+

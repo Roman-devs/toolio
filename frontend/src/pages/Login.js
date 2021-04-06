@@ -4,34 +4,29 @@ import { useState } from 'react'
 import {useAuth} from "../auth/AuthContext";
 import {loginUser} from "../services/loginService";
 import {Redirect} from "react-router-dom";
+import styled from "styled-components/macro";
+import GlobalStyles from "../styling/GlobalStyles";
 
 export default function Login (){
     const {register, handleSubmit, errors} = useForm();
     const { token, setToken } = useAuth()
-    const [fetchError, setFetchError] = useState(null)
-    const [loginDTO, setLoginDTO] = useState('');
+    const [fetchError, setFetchError] = useState("")
 
-
-
-    const onSubmit = async (loginData) => {
-        setLoginDTO(loginData);
+    const onSubmit =  (loginData) => {
         console.log(loginData)
-        try{await loginUser(loginData).then(setToken)
-            setLoginDTO('');
-            setFetchError(null);
-        } catch (error) {
-            console.log("TEST")
-            setFetchError(error.message);
-        }
+        loginUser(loginData)
+            .then(setToken)
+            .catch(() => setFetchError("Wrong credentials!"))
     }
     if (token) {
         return <Redirect to="/" />
     }
 
     return (
+
         <Styles>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>TooLio</h1>
+                <Logo><img src={process.env.PUBLIC_URL + '/pictures/TooLioLogo.png'} alt="Logo"/></Logo>
                 <label>Username</label>
                 <input name="username"
                        ref={register({required: true})}/>
@@ -48,3 +43,10 @@ export default function Login (){
         </Styles>
     )
 }
+
+export const Logo = styled.div`
+  img{
+    height: 5rem;
+    padding-bottom: 2rem;
+  }
+`

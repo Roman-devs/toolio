@@ -147,7 +147,7 @@ public class OfferControllerTest {
         AppUser userThatMakesOffer = AppUser.builder()
                 .id("1")
                 .name("Roman")
-                .username("Kuite")
+                .username("Roman")
                 .address("Musterstreet 26")
                 .email("muster@mann.de")
                 .build();
@@ -158,7 +158,7 @@ public class OfferControllerTest {
                 .offerDescription("An Offer made")
                 .offerFIATamount("200")
                 .expectedDeliveryDate("2021-04-15")
-                .offeringUserId("1")
+                .offeringUserId("")
                 .inquiryPartId("123")
                 .build();
         //WHEN
