@@ -2,10 +2,13 @@ import styled from "styled-components/macro";
 
 export const Styles = styled.div`
   background: whitesmoke;
-  padding: 20px;
+  padding: 2rem;
   width: 100%;
   font-family: "Courier New", arial, sans-serif;
   text-align: center;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height:100vh;
   
   .offerDescription{
     line-height: 10rem;
