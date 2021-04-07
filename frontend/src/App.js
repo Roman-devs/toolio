@@ -21,6 +21,7 @@ function App() {
     return (
         <AuthProvider>
             <GlobalStyle/>
+            {/*Sidebar - NAV */}
             <Router>
                 <Switch>
                     <Route exact path="/login">
@@ -30,7 +31,7 @@ function App() {
                         <CreateNewInquiry />
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/myreceivedoffers">
-                        <ReceivedOfferOverview/> // TODO: Styling and cards
+                        <ReceivedOfferOverview/>
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/madeoffers">
                         {/*<MadeOfferOverview/> //TODO: Everything  */}

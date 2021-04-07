@@ -5,13 +5,17 @@ import TopBar from "../components/TopBar";
 import InquiryList from "../components/InquiryList";
 import styled from "styled-components/macro";
 import OfferList from "../components/OfferList";
+import {getUserInquiries} from "../services/inquiryService";
 
 export default function ReceivedOfferOverview(){
     const [offers, setOffers] = useState([])
+    const [inquiries, setInquiries] = useState([])
 
     useEffect(()=> {
         getAllReceivedOffersByAuth()
-            .then(setOffers)
+            .then(setOffers);
+        getUserInquiries()
+            .then(setInquiries);
     },[])
 
     return(
@@ -21,7 +25,7 @@ export default function ReceivedOfferOverview(){
                 <Content>
                     <TopBar Route="Received Offers"/>
                     <OfferContainer>
-                        {offers && <OfferList offers={offers}/>}
+                        {offers && inquiries && <OfferList userOffers={offers} userInquiries={inquiries}/>}
                     </OfferContainer>
                 </Content>
                 {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}

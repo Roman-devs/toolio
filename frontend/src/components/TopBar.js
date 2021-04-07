@@ -18,10 +18,10 @@ const TopBarContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   padding-top: 1.25rem;
-  height: 5.0rem;
+  height: 3.0rem;
   
   font-family: "Courier New", arial, sans-serif;
-
+  
   background-color: whitesmoke;
   
   .right{
@@ -32,7 +32,7 @@ const TopBarContainer = styled.div`
   .left{
     font-weight:bold;
     vertical-align: center;
-    padding-top: 1rem;
+    padding-top: 0rem;
     padding-left: 2rem;
   }
   .center{

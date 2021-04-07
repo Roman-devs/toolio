@@ -19,7 +19,7 @@ export const CardImage = styled.div`
   img{
     max-width:100%;
     max-height: 100%;
-    opacity: 0.7;
+    //opacity: 0.7;
     object-fit: contain;
     padding-bottom: 25px;
   }

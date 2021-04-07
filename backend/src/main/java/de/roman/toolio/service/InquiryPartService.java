@@ -10,8 +10,10 @@ import de.roman.toolio.security.UserSecurityCredentialsDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class InquiryPartService {
@@ -45,14 +47,31 @@ public class InquiryPartService {
             return Optional.of(inquiryPartDb.save(inquiryPartToBeAdded));
         }
         return Optional.empty()
-        ;// id of "Mustermann" is passed into this method. This is caused by faulty/missing connection between usercredentialsdb and the actual userdb. An intermediate step is required that connects the usercredentialsdb _id with the appuser db. THe corresponding unique identifier is the username in the appuserdb.
+                ;
     }
 
     public void deleteInquiryFromDatabase(String inquiryId) {
         inquiryPartDb.deleteById(inquiryId);
     }
 
-    public InquiryPart getInquiryById(String id) {
-        return inquiryPartDb.findById(id).get();
+    public Optional<InquiryPart> getInquiryById(String id) {
+        if (inquiryPartDb.existsById(id)) {
+            return inquiryPartDb.findById(id);
+        } else return Optional.empty();
+    }
+
+    public Optional<List<InquiryPart>> listUserInquiryParts(String username) {
+        List<String> userNameListOfInquiryIds = appUserDb.findAppUserByUsername(username).getInquiryPartIDs();
+        if (!userNameListOfInquiryIds.isEmpty()) {
+            List<InquiryPart> userInquiryIds = new ArrayList<>();
+            userNameListOfInquiryIds.stream().forEach((inquiryId) -> {
+                Optional<InquiryPart> inquiryPartList = getInquiryById(inquiryId);
+                if (inquiryPartList.isPresent()) {
+                    userInquiryIds.add(inquiryPartList.get());
+                }
+            });
+            return Optional.of(userInquiryIds);
+        }
+        return Optional.empty();
     }
 }

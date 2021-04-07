@@ -20,5 +20,6 @@ const List = styled.ul`
   flex-wrap: wrap;
   justify-content: space-evenly;
   list-style: none;
+  height: 100vh;
 `
 
