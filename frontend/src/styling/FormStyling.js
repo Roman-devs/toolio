@@ -3,13 +3,15 @@ import styled from "styled-components/macro";
 export const Styles = styled.div`
   background: whitesmoke;
   padding: 20px;
+  width: 100%;
   font-family: "Courier New", arial, sans-serif;
   text-align: center;
+  
   .offerDescription{
     line-height: 10rem;
   }
   .partDescription{
-    line-height: 10rem;
+    line-height: 5rem;
   }
   label{
     padding-top: 15px;
@@ -30,7 +32,7 @@ export const Styles = styled.div`
     justify-content: space-around;
     margin: 0 auto;
     max-width: 500px;
-    padding: 30px 50px;
+    padding: 30px 30px;
     text-align: center;
   }
 
@@ -52,12 +54,14 @@ export const Styles = styled.div`
     margin-bottom: 5px;
   }
 
-  .error {
+  .errors {
     color: red;
     font-size: 12px;
     height: 30px;
   }
-
+  .dimension{
+   
+  }
   .submitButton {
     //background-color: #6976d9;
     //color: white;

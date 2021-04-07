@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import {useEffect, useState} from "react";
+import {StyledList} from "./InquiryList";
 
 
 export default function OfferList({userOffers, userInquiries}) {
@@ -25,20 +26,13 @@ export default function OfferList({userOffers, userInquiries}) {
     }, [])
 
     return (
-        <List>
+        <StyledList>
             {userOffers.map((offer) => (
                 <li key={offer.id}>
                     <p>Placeholder Offer</p>
                 </li>
             ))}
-        </List>
+        </StyledList>
     )
 }
 
-const List = styled.ul`
-  background: whitesmoke;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  list-style: none;
-`

@@ -20,16 +20,7 @@ export default function ReceivedOfferOverview(){
 
     return(
         <>
-            <PageLayoutContainer>
-                <BurgerMenu/>
-                <Content>
-                    <TopBar Route="Received Offers"/>
-                    <OfferContainer>
-                        {offers && inquiries && <OfferList userOffers={offers} userInquiries={inquiries}/>}
-                    </OfferContainer>
-                </Content>
-                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
-            </PageLayoutContainer>
+            {offers && inquiries && <OfferList userOffers={offers} userInquiries={inquiries}/>}
         </>
     )
 }

@@ -32,16 +32,19 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
 
                 <label>Max Length [mm]</label>
                 <input name="length"
+                       className="dimension"
                        ref={register({required: true})}/>
                 {errors.length && "Required"}
 
                 <label>Max Width [mm]</label>
                 <input name="width"
+                       className="dimension"
                        ref={register({required: true})}/>
                 {errors.width && "Required"}
 
                 <label>Max Height/Thickness [mm]</label>
                 <input name="height"
+                       className="dimension"
                        ref={register({required: true})}/>
                 {errors.height && "Required"}
 

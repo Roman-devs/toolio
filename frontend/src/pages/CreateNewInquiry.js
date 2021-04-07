@@ -25,16 +25,7 @@ export default function CreateNewInquiry() {
     }
 
     return (
-        <PageLayoutContainer>
-            <BurgerMenu/>
-            <Content>
-                <TopBar Route="Create New Inquiry"/>
-                <ItemContainer>
                     <FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>
-                </ItemContainer>
-                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
-            </Content>
-        </PageLayoutContainer>
     )
 }
 

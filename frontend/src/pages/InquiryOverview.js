@@ -24,18 +24,9 @@ export default function InquiryOverview() {
             }).catch((error) => console.error(error))
     }
     return (
-        <>
-            <PageLayoutContainer>
-                <BurgerMenu/>
-                <Content>
-                    <TopBar Route="All Inquiries"/>
-                    <InquiriesContainer>
+                <>
                         {inquiries && <InquiryList inquiries={inquiries}/>}
-                    </InquiriesContainer>
-                </Content>
-                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
-            </PageLayoutContainer>
-        </>
+                </>
     )
 }
 
@@ -52,6 +43,8 @@ const InquiriesContainer = styled.div`
 `
 
 const Content = styled.div`
+  
+  overflow-y: scroll;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
