@@ -22,7 +22,7 @@ export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow-y: scroll;
 `

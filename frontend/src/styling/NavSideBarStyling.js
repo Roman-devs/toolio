@@ -10,6 +10,7 @@ export const Nav = styled.div`
   width: 10rem;
   gap: 5rem;
   text-decoration: none;
+  height: 100%;
 
   .Link {
     color: whitesmoke;
