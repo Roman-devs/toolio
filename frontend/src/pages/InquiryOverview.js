@@ -2,15 +2,17 @@ import {getInquiries, postInquiry} from "../services/inquiryService";
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components/macro';
 import InquiryList from "../components/InquiryList";
-import BurgerMenu from "../components/BurgerMenu";
-import TopBar from "../components/TopBar";
 import {useAuth} from "../auth/AuthContext";
+import {getAllOffers} from "../services/offerService";
 
 export default function InquiryOverview() {
     const [inquiries, setInquiries] = useState([])
+    const [offers, setOffers] = useState([])
     const{ token } = useAuth();
 
     useEffect(() => {
+        getAllOffers()
+            .then(setOffers);
         getInquiries()
             .then(setInquiries)
             .catch((error) => console.error(error))
@@ -25,7 +27,7 @@ export default function InquiryOverview() {
     }
     return (
                 <>
-                        {inquiries && <InquiryList inquiries={inquiries}/>}
+                        {inquiries && <InquiryList inquiries={inquiries} offers={offers}/>}
                 </>
     )
 }

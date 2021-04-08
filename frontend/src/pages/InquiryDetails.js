@@ -1,57 +1,31 @@
 import BurgerMenu from "../components/BurgerMenu";
 import TopBar from "../components/TopBar";
 import InquiryList from "../components/InquiryList";
-import { React, useEffect, useState } from 'react'
+import {React, useEffect, useState} from 'react'
 import styled from "styled-components/macro";
 import {useParams} from "react-router-dom";
-import {getInquiryById} from "../services/inquiryService";
+import {getInquiryById, getUserInquiries} from "../services/inquiryService";
 import InquiryCard from "../components/InquiryCard";
 import InquiryDetailsItem from "../components/InquiryDetailsItem";
+import OfferList from "../components/OfferList";
+import {getAllReceivedOffersByAuth} from "../services/offerService";
+import OfferListFinal from "../components/OfferListFinal";
 
 
-export default function InquiryDetails(){
+export default function InquiryDetails() {
     const [inquiry, setInquiry] = useState("")
     const {inquiryPartId} = useParams();
 
-    useEffect(()=>{
+
+
+    useEffect(() => {
         getInquiryById(inquiryPartId).then(setInquiry)
-    },[])
+    }, [])
 
-    return(
-
-            <PageLayoutContainer>
-                <BurgerMenu/>
-                <Content>
-                    <TopBar/>
-                    <InquiryContainer>
-                        {inquiry && <InquiryDetailsItem inquiry={inquiry} makeOffer={false}/>}
-                    </InquiryContainer>
-                </Content>
-                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
-            </PageLayoutContainer>
-
+    return (
+        <>
+            {inquiry && <InquiryDetailsItem inquiry={inquiry} makeOffer={false}/>}
+            <OfferListFinal/>
+        </>
     )
 }
-
-const PageLayoutContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  overflow: hidden;
-  background-color: whitesmoke;
-`
-
-const InquiryContainer = styled.div`
-  display: flex;
-  overflow-y: scroll;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-`
-
-const Content = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`

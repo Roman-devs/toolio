@@ -20,7 +20,7 @@ export default function ReceivedOfferOverview(){
 
     return(
         <>
-            {offers && inquiries && <OfferList userOffers={offers} userInquiries={inquiries}/>}
+            {offers && inquiries && <OfferList offers={offers} inquiries={inquiries}/>}
         </>
     )
 }

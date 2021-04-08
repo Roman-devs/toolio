@@ -12,6 +12,7 @@ import {Link} from "react-router-dom";
 export default function InquiryDetailsItem({inquiry, makeOffer}) {
 
 
+
     return (
 
         <CardDetailsWrapper>
@@ -66,9 +67,13 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
                     {inquiry.latestDate}
                 </ProductDimension>
             </ProductDimensionsWrapper>
+            {makeOffer &&
+            <Link to={`/inquiryDetails/${inquiry.uuid}`}>
+                <CardButtonInquiry> Back </CardButtonInquiry>
+            </Link>}
             {!makeOffer &&
                 <Link to={`/inquiryDetails/makeOffer/${inquiry.uuid}`}>
-                    <CardButton> Make An Offer! </CardButton>
+                    <CardButtonInquiry> Make An Offer! </CardButtonInquiry>
                 </Link>
                 }
 
@@ -81,16 +86,39 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
 
 export const CardDetailsWrapper = styled.div`
   overflow: hidden;
-  padding: 0 0 25px;
-  margin: 20px;
-  width: 500px;
+  align-self: center;
+  height: 575px;
+  margin: 50px;
+  width: 700px;
   font-family: "Courier New", arial, sans-serif;
   border-radius: 15px;
-  box-shadow: 0 0 20px darkgrey;
+  box-shadow: 0 0 20px #2b2b2b;
   text-align: center;
-  vertical-align: center;
-  background: white;
+  background: #ffffff;
+  box-sizing: border-box;
 `
+
+const CardButtonInquiry = styled.button`
+  display: inline-block;
+  padding: 15px;
+  margin: 25px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #000000;
+  border: 2px;
+  border-radius: 25px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.02, 0.01, 0.4, 1);
+
+  &:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    transform: translate(0, -1px);
+  }
+`
+
 
 export const ProductDetailsDescription = styled.div`
   padding-top: 15px;
