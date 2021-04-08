@@ -20,6 +20,7 @@ export const StyledList = styled.ul`
   background: whitesmoke;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   list-style: none;
   height: 100%;

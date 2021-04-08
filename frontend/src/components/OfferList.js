@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {StyledList} from "./InquiryList";
+import styled from 'styled-components/macro'
 import {Styles} from "../styling/FormStyling";
+import {CardWrapper} from "../styling/CardStyling";
 
 
 export default function OfferList({userOffers, userInquiries}) {
@@ -19,20 +21,31 @@ export default function OfferList({userOffers, userInquiries}) {
         <StyledList>
             {list.map((listItem) =>
                 <li key={listItem.uuid}>
-                    <h2>{listItem.uuid}</h2>
-                    {listItem.matchedOffers.map((offer) =>
-                        <div>
-                            <p>{offer.offerId}</p>
-                            <p>{offer.ownerIdOfInquiry}</p>
-                            <p>{offer.offeringUserId}</p>
-                            <p>{offer.expectedDeliveryDate}</p>
-                            <p>{offer.offerDescription}</p>
-                            <p>{offer.offerFIATamount}</p>
-                        </div>
-                    )}
+                    <TestDiv>
+                        <h2>{listItem.uuid}</h2>
+                        {listItem.matchedOffers.map((offer, index) =>
+                            <CardWrapper>
+                                <p>Offer No.: {index + 1}</p>
+                                <p>{offer.offerId}</p>
+                                <p>{offer.ownerIdOfInquiry}</p>
+                                <p>{offer.offeringUserId}</p>
+                                <p>{offer.expectedDeliveryDate}</p>
+                                <p>{offer.offerDescription}</p>
+                                <p>{offer.offerFIATamount}</p>
+                            </CardWrapper>
+                        )}
+                    </TestDiv>
                 </li>
             )}
         </StyledList>
     )
 }
 
+const TestDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  h2{
+    justify-content: center;
+  }
+`
