@@ -54,25 +54,21 @@ public class OfferService {
                 .offerId(offerId)
                 .inquiryPartId(offerDTO.getInquiryPartId())
                 .ownerIdOfInquiry("")
-                .offeringUserId(offerDTO.getOfferingUserId()) // TODO
+                .offeringUserId(offerDTO.getOfferingUserId())
                 .build();
         if (inquiryPartDb.existsById(offerDTO.getInquiryPartId())) {
-            // UPDATE THE USER THAT IS THE OWNER OF THE INQUIRY WITH THE OFFER ID THAT IS POSTED
             AppUser ownerOfInquiry = appUserDb.findByInquiryPartIDsContaining(offerDTO.getInquiryPartId());  // 8acfa519-7e9f-4dbe-b3cb-83d3bebce7c1
             List<String> updatedListOfReceivedOffers = ownerOfInquiry.getReceivedOfferIDs();
             updatedListOfReceivedOffers.add(offerId);
             AppUser updatedOwnerofInquiry = ownerOfInquiry.toBuilder().receivedOfferIDs(updatedListOfReceivedOffers).build();
-            // UPDATE THE USER THAT IS POSTING THE OFFER WITH THE OFFER ID THAT IS POSTED
-            AppUser postingUserOfOffer = appUserDb.findById(offerDTO.getOfferingUserId()).get(); // TODO
+            AppUser postingUserOfOffer = appUserDb.findById(offerDTO.getOfferingUserId()).get();
             List<String> updatedListOfMadeOffers = postingUserOfOffer.getMadeOfferIDs();
             updatedListOfMadeOffers.add(offerId);
             AppUser updatedOfferingUser = postingUserOfOffer.toBuilder().madeOfferIDs(updatedListOfMadeOffers).build();
-            // SAVE BOTH USERS TO THE DATABASE
             appUserDb.save(updatedOwnerofInquiry);
             appUserDb.save(updatedOfferingUser);
-            // UPDATE THE OFFER WITH THE ID OF THE INQUIRY OWNER
             offerToBeAdded.setOwnerIdOfInquiry(ownerOfInquiry.getId());
-            // SAVE THE OFFER TO THE DATABASE
+            // SAVE THE UPDATED OFFER TO THE DATABASE
             offerDb.save(offerToBeAdded);
             return Optional.of(offerToBeAdded);
         }
@@ -88,5 +84,11 @@ public class OfferService {
     public List<Offer> getMadeOffersByUserAuth(String usernameFromAuth) {
         AppUser authUser = appUserDb.findAppUserByUsername(usernameFromAuth);
         return offerDb.findAllByOfferingUserId(authUser.getId());
+    }
+
+    public String getUserNameByUserId(Offer offer) {
+        String userId = offer.getOfferingUserId();
+        AppUser user = appUserDb.findById(userId).get();
+        return user.getUsername();
     }
 }

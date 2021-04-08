@@ -27,6 +27,12 @@ public class OfferController {
         return offerService.getAllOffersOfDatabase();
     }
 
+    @PostMapping("userids")
+    public String postAndReceiveUserName (@RequestBody Offer offer){
+        return offerService.getUserNameByUserId(offer);
+    }
+
+
     @GetMapping("offer/{offerId}")
     public Offer getOfferById(@PathVariable String offerId){
         return offerService.getOfferById(offerId);

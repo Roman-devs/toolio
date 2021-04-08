@@ -39,6 +39,12 @@ export default function OfferListFinal() {
 
 const OfferListContainer = styled.ul`
   background: whitesmoke;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  gap: 2rem;
   padding: 2rem;
   width: 100%;
   font-family: "Courier New", arial, sans-serif;

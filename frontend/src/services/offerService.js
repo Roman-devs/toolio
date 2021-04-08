@@ -3,6 +3,7 @@ import axiosConfig from "./axiosConfig";
 
 const offerUrl = "/offers"
 const byAuth = "receivedoffers"
+const byUserId = "userids"
 axios.defaults.headers.common = {
     "Content-Type": "application/json"
 }
@@ -19,4 +20,9 @@ export const getAllReceivedOffersByAuth = () =>
 export const getAllOffers = () =>
     axiosConfig.axiosInstance
         .get(offerUrl)
+        .then((response) => response.data)
+
+export const postUserNameByUserId = (offer) =>
+    axiosConfig.axiosInstance
+        .post(`${offerUrl}/${byUserId}`, offer)
         .then((response) => response.data)
