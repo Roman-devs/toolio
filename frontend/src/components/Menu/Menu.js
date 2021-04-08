@@ -14,15 +14,15 @@ const Menu = ({open}) => {
                 <Link to="/">
                     <span aria-label="Show All Inquiries">All Inquiries</span>
                 </Link>
-                <Link>
-                    <span aria-label="My Inquiries">My Inquiries</span>
-                </Link>
-                <Link to="/myreceivedoffers">
-                    <span aria-label="Offers Received">Offers Received</span>
-                </Link>
-                <Link to="/madeoffers">
-                    <span aria-label="Offers Made">Offers Made</span>
-                </Link>
+                {/*<Link>*/}
+                {/*    <span aria-label="My Inquiries">My Inquiries</span>*/}
+                {/*</Link>*/}
+                {/*<Link to="/myreceivedoffers">*/}
+                {/*    <span aria-label="Offers Received">Offers Received</span>*/}
+                {/*</Link>*/}
+                {/*<Link to="/madeoffers">*/}
+                {/*    <span aria-label="Offers Made">Offers Made</span>*/}
+                {/*</Link>*/}
                 <Link to="/newInquiry">
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
                 </Link>

@@ -88,7 +88,7 @@ export const CardDetailsWrapper = styled.div`
   overflow: hidden;
   align-self: center;
   height: 575px;
-  margin: 50px;
+  margin: 5rem;
   width: 700px;
   font-family: "Courier New", arial, sans-serif;
   border-radius: 15px;

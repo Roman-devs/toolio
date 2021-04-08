@@ -19,6 +19,7 @@ import {Nav} from "./styling/NavSideBarStyling";
 import NavSideBar from "./components/NavSideBar";
 import {ContentWrapper} from "./styling/ContentWrapper.styled";
 import {GlobalWrapper} from "./styling/GlobalWrapper.styled";
+import BurgerMenu from "./components/BurgerMenu";
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
                     {/*Content Wrapper kriegt flex direction Row*/}
                     <Router>
-                        <NavSideBar/>
+                        <BurgerMenu/>
                         <ContentWrapper>
                         <Switch>
                             <Route exact path="/login">

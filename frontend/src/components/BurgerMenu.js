@@ -19,6 +19,8 @@ export default function BurgerMenu() {
 }
 
 const MenuSpaceFolded = styled.div`
-    width: fit-content;
+    width: 12%;
+    height: 100%;
+    box-sizing: border-box;
     position: absolute;
 `

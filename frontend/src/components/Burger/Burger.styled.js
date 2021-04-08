@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 export const StyledBurger = styled.button`
   position: fixed;
   top: 7.5%;
-  left: 2rem;
+  left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
