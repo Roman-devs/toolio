@@ -5,10 +5,11 @@ import BurgerMenu from "../components/BurgerMenu";
 import styled from "styled-components/macro";
 import InquiryList from "../components/InquiryList";
 import TopBar from "../components/TopBar";
-
+import {useHistory} from "react-router-dom";
 
 export default function CreateNewInquiry() {
     const [inquiries, setInquiries] = useState([])
+    let {history} = useHistory()
 
     useEffect(() => {
         getInquiries()
@@ -22,6 +23,8 @@ export default function CreateNewInquiry() {
                 const updatedInquiries = [...inquiries, newInquiry]
                 setInquiries(updatedInquiries);
             }).catch((error) => console.error(error))
+            alert("Your Inquiry has been posted to the overview")
+            history.push("/")
     }
 
     return (

@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {Styles} from "../styling/FormStyling";
 import {getAllOffers, postOffer} from "../services/offerService";
 import React, {useEffect, useState} from "react";
+import { useHistory, Link, Redirect, Route} from "react-router-dom";
 import moment from "moment";
 import {useParams} from "react-router-dom";
 
@@ -11,6 +12,9 @@ export default function CreateOfferForm() {
     const {register, handleSubmit, errors} = useForm();
     const [offers, setOffers] = useState([])
     const {inquiryPartId} = useParams();
+    let history = useHistory();
+
+    const inquiryUrl= "inquiryDetails"
 
     useEffect(() => {
         getAllOffers()
@@ -26,6 +30,8 @@ export default function CreateOfferForm() {
                 const updatedOffers = [...offers, offerDTO]
                 setOffers(updatedOffers)
             }).catch((error) => console.error(error))
+            alert("The Offer has been posted!")
+        history.push(`/${inquiryUrl}/${inquiryPartId}`);
     }
 
     return (

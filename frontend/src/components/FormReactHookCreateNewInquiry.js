@@ -3,13 +3,17 @@ import {useForm} from "react-hook-form";
 import moment from 'moment'
 import {postInquiry} from "../services/inquiryService";
 import {Styles} from "../styling/FormStyling";
+import {useHistory, Link, Redirect, Route} from "react-router-dom";
+import styled from 'styled-components/macro';
 
 export default function FormReactHookCreateNewInquiry({onAdd}) {
     const {register, handleSubmit, errors} = useForm();
+    let history = useHistory();
 
     const onSubmit = newInquiry => {
         console.log(newInquiry)
         onAdd(newInquiry);
+        history.push("/")
     }
 
     return (
@@ -22,41 +26,51 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                        ref={register({
                            required: true
                        })}/>
-                {errors.partName && "Required"}
+                {errors.partName && <p className="error">Please specify a name for your part</p>}
 
                 <label>Product Description [mm]</label>
-                <input className="partDescription"
-                       name="partDescription"
-                       ref={register({required: true})}/>
-                {errors.partDescription && "Required"}
+                <textarea className="partDescription"
+                          name="partDescription"
+                          ref={register({required: true})}/>
+                {errors.partDescription && <p className="error">Please enter a description</p>}
+                <ContainerDimension>
+                    <div>
+                        <p className="length">Max Length [mm]</p>
+                        <p className="width">Max Width [mm]</p>
+                        <p className="thickness">Max Thickness [mm]</p>
+                    </div>
+                    <div>
+                        <input name="length"
+                               className="dimension"
+                               ref={register({required: true})}/>
 
-                <label>Max Length [mm]</label>
-                <input name="length"
-                       className="dimension"
-                       ref={register({required: true})}/>
-                {errors.length && "Required"}
 
-                <label>Max Width [mm]</label>
-                <input name="width"
-                       className="dimension"
-                       ref={register({required: true})}/>
-                {errors.width && "Required"}
+                        <input name="width"
+                               className="dimension"
+                               ref={register({required: true})}/>
 
-                <label>Max Height/Thickness [mm]</label>
-                <input name="height"
-                       className="dimension"
-                       ref={register({required: true})}/>
-                {errors.height && "Required"}
 
+
+                        <input name="height"
+                               className="dimension"
+                               ref={register({required: true})}/>
+
+                    </div>
+                    <div>
+                        {errors.length && <p className="error"></p>}
+                        <p className="error">{errors.width && errors.height && errors.length && "Please specify all dimensions"}</p>
+                        <p className="error">{errors.height && ""}</p>
+                    </div>
+                </ContainerDimension>
                 <label>Material</label>
                 <input name="material"
                        ref={register({required: true})}/>
-                {errors.material && "Required"}
+                {errors.material && <p className="error">Please specify the material</p>}
 
                 <label>Order Amount</label>
                 <input name="orderAmount"
                        ref={register({required: true})}/>
-                {errors.orderAmount && "Required"}
+                {errors.orderAmount && <p className="error">Please specify the amount of parts</p>}
 
 
                 <label>Earliest Delivery Date</label>
@@ -64,17 +78,54 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                        type="date"
                        min={moment().format("YYYY-MM-DD")}
                        ref={register({required: true})}/>
-                {errors.earliestDate && "Required"}
+                {errors.earliestDate && <p className="error">Earliest Delivery Date is required</p>}
 
                 <label>Latest Delivery Date</label>
                 <input name="latestDate"
                        type="date"
                        min={moment().format("YYYY-MM-DD")}
                        ref={register({required: true})}/>
-                {errors.latestDate && "Required"}
+                {errors.latestDate && <p className="error">Latest Delivery Date is required</p>}
 
                 <input className="submitButton" type="submit" value="Post Inquiry!"/>
             </form>
         </Styles>
     )
 }
+
+const ContainerDimension = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: center;
+  width: 700px;
+  justify-content: space-evenly;
+  
+  .length{
+    padding-left: 1.5rem;
+    
+  }
+  .width{
+    padding-left: 0.4rem;
+  }
+  .thickness{
+    padding-right: 1rem;
+  }
+  
+  input{
+    display: flex;
+    flex-direction: row;
+    width: 77px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  div{
+   display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    width: 400px;
+    justify-content: center;
+    text-align: center;
+  }
+`

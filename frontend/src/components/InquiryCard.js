@@ -10,19 +10,19 @@ import styled from "styled-components/macro";
 export default function InquiryCard({inquiry}) {
     const [badge, setBadge] = useState();
 
-    useEffect(()=>{
-        if(inquiry.matchedOffers.length){
+    useEffect(() => {
+        if (inquiry.matchedOffers.length) {
             setBadge(inquiry.matchedOffers.length)
         }
-    },[])
+    }, [])
 
     return (
         <CardWrapper>
-
+            {badge && <Badge disabled={true}>{badge}</Badge>}
             <CardImage>
                 <img src={process.env.PUBLIC_URL + '/pictures/CardHeaderTemplate.png'} alt="Template"/>
             </CardImage>
-            {badge && <Badge disabled={true}>{badge}</Badge>}
+
             <ProductName>
                 <h1>{inquiry.partName}</h1>
             </ProductName>
@@ -54,9 +54,9 @@ export default function InquiryCard({inquiry}) {
                 </ProductDimension>
             </ProductDimensionsWrapper>
             <ProductDimensionsWrapper>
-            <Link to={`/inquiryDetails/${inquiry.uuid}`}>
-                <CardButton>Details</CardButton>
-            </Link>
+                <Link to={`/inquiryDetails/${inquiry.uuid}`}>
+                    <CardButton>Details</CardButton>
+                </Link>
             </ProductDimensionsWrapper>
         </CardWrapper>
 
@@ -64,23 +64,26 @@ export default function InquiryCard({inquiry}) {
 }
 
 const Badge = styled.button`
-  display: inline-block;
+  top: -1.5rem;
+  right: -1.5rem;
+  position: absolute;
   height: 4rem;
   width: 4rem;
   font-family: inherit;
   font-size: inherit;
-  color: #000000;
+  color: #ffffff;
   font-weight: bold;
-  background-color: #16e0cd;
+  background-color: #030303;
   border: 2px;
   border-radius: 50px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.4, 1);
 
   &:hover {
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
     transform: translate(0, -1px);
+
   }
 `
 

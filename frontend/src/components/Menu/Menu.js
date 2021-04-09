@@ -1,6 +1,6 @@
 import React from 'react';
 import {bool} from 'prop-types';
-import {StyledMenu, MenuCategory, MenuHeader} from './Menu.styled';
+import {StyledMenu, MenuCategory, MenuHeader, ContainerLogout} from './Menu.styled';
 import {Link} from "react-router-dom";
 
 const Menu = ({open}) => {
@@ -27,6 +27,11 @@ const Menu = ({open}) => {
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
                 </Link>
             </MenuCategory>
+            <ContainerLogout>
+                <Link to="/">
+                    <span aria-label="Show All Inquiries">All Inquiries</span>
+                </Link>
+            </ContainerLogout>
         </StyledMenu>
     )
 }

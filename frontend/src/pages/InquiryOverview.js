@@ -27,7 +27,7 @@ export default function InquiryOverview() {
     }
     return (
                 <>
-                        {inquiries && <InquiryList inquiries={inquiries} offers={offers}/>}
+                        {inquiries && offers && <InquiryList inquiries={inquiries} offers={offers}/>}
                 </>
     )
 }

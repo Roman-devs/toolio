@@ -28,8 +28,8 @@ export default function InquiryList({inquiries, offers}) {
 }
 
 export const StyledList = styled.ul`
-  gap: 5rem;
-  padding-left: 4rem;
+  gap: 1rem;
+  padding-left: 1rem;
   padding-top: 4rem;
   padding-bottom: 4rem;
   background: #f5f5f5;

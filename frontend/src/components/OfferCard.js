@@ -14,13 +14,13 @@ export default function OfferCard({offer, index}) {
         <OfferContainer>
             <OfferHeadline>Offer No.:{index}</OfferHeadline>
             <OfferGeneralHeadline> Expected Date of Delivery </OfferGeneralHeadline>
-            <p>{offer.expectedDeliveryDate}</p>
+            <OfferDate>{offer.expectedDeliveryDate}</OfferDate>
             <OfferGeneralHeadline> Offer Description </OfferGeneralHeadline>
             <p>{offer.offerDescription}</p>
             <OfferGeneralHeadline> Offered Price </OfferGeneralHeadline>
             <OfferFIAT>{offer.offerFIATamount} €</OfferFIAT>
             <OfferGeneralHeadline> Posted By User: </OfferGeneralHeadline>
-            <p>{offeringUserName}</p>
+            <UserName>{offeringUserName}</UserName>
         </OfferContainer>
     )
 }
@@ -51,5 +51,14 @@ export const OfferFIAT = styled.div`
   font-size: xx-large;
   font-weight: bolder;
   color: #23b121;
+`
+
+export const OfferDate = styled.div`
+  font-weight: bold;
+`
+
+export const UserName = styled.div`
+  color: #204ad0;
+  font-weight: bold;
 `
 
