@@ -1,7 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form";
 import moment from 'moment'
-import {postInquiry} from "../services/inquiryService";
 import {Styles} from "../styling/FormStyling";
 import {useHistory, Link, Redirect, Route} from "react-router-dom";
 import styled from 'styled-components/macro';

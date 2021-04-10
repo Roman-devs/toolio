@@ -1,6 +1,5 @@
-import {getInquiries, postInquiry} from "../services/inquiryService";
+import {getInquiries} from "../services/inquiryService";
 import React, {useEffect, useState} from 'react'
-import styled from 'styled-components/macro';
 import InquiryList from "../components/InquiryList";
 import {useAuth} from "../auth/AuthContext";
 import {getAllOffers} from "../services/offerService";

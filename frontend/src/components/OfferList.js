@@ -1,9 +1,5 @@
 import {useEffect, useState} from "react";
-import {StyledList} from "./InquiryList";
 import styled from 'styled-components/macro'
-import {Styles} from "../styling/FormStyling";
-import {CardWrapper} from "../styling/CardStyling";
-import {getInquiryById} from "../services/inquiryService";
 
 
 export default function OfferList({offers, inquiries}) {

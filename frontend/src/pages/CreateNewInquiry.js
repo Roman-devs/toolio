@@ -1,10 +1,7 @@
 import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewInquiry";
 import {getInquiries, postInquiry} from "../services/inquiryService";
 import React, {useEffect, useState} from "react";
-import BurgerMenu from "../components/BurgerMenu";
 import styled from "styled-components/macro";
-import InquiryList from "../components/InquiryList";
-import TopBar from "../components/TopBar";
 import {useHistory} from "react-router-dom";
 
 export default function CreateNewInquiry() {

@@ -1,6 +1,5 @@
 import {Nav} from "../styling/NavSideBarStyling";
 import {NavLink} from "react-router-dom";
-import {MenuCategory} from "./Menu/Menu.styled";
 import React from "react";
 
 

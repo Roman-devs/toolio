@@ -6,8 +6,6 @@ import {
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import styled from "styled-components/macro";
-import {bool} from "prop-types";
-import Menu from "./Menu";
 
 export default function MyInquiryCard({inquiry}) {
     const [badge, setBadge] = useState();
