@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {CardButton} from "../../styling/CardStyling";
 import {postUserNameByUserId} from "../../services/offerService";
 import {useState, useEffect} from "react";
+import styled from "styled-components/macro";
 
 const Menu = ({open}) => {
     // const [loggedInUser, setLoggedInUser] = useState()
@@ -48,9 +49,9 @@ const Menu = ({open}) => {
                 </Link>
             </MenuCategory>
             <ContainerLogout>
-                <CardButton onClick={handleLogout}>
+                <MenuButton onClick={handleLogout}>
                     Logout
-                </CardButton>
+                </MenuButton>
             </ContainerLogout>
         </StyledMenu>
     )
@@ -61,3 +62,25 @@ Menu.propTypes = {
 };
 
 export default Menu;
+
+
+export const MenuButton = styled.button`
+  display: inline-block;
+  padding: 12px;
+  margin: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #000000;
+  border: 2px;
+  border-radius: 25px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.02, 0.01, 0.4, 1);
+
+  &:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    transform: translate(0, -1px);
+  }
+`
