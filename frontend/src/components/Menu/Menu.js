@@ -1,9 +1,16 @@
 import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu, MenuCategory, MenuHeader, ContainerLogout} from './Menu.styled';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import {CardButton} from "../../styling/CardStyling";
 
 const Menu = ({open}) => {
+    let history = useHistory()
+
+    const handleLogout = () => {
+        sessionStorage.setItem("toolio","");
+        window.location.reload()}
+
 
     return (
         <StyledMenu open={open}>
@@ -28,9 +35,9 @@ const Menu = ({open}) => {
                 </Link>
             </MenuCategory>
             <ContainerLogout>
-                <Link to="/">
-                    <span aria-label="Show All Inquiries">All Inquiries</span>
-                </Link>
+                <CardButton onClick={handleLogout}>
+                    Logout
+                </CardButton>
             </ContainerLogout>
         </StyledMenu>
     )
