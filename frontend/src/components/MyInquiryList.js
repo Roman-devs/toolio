@@ -1,4 +1,3 @@
-import InquiryCard from "./InquiryCard";
 import {useEffect, useState} from "react";
 import styled from "styled-components/macro";
 import MyInquiryCard from "./MyInquiryCard";

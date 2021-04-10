@@ -1,10 +1,6 @@
 import {useState, useEffect} from "react";
 import {getAllReceivedOffersByAuth} from "../services/offerService";
-import BurgerMenu from "../components/BurgerMenu";
-import TopBar from "../components/TopBar";
-import InquiryList from "../components/InquiryList";
 import styled from "styled-components/macro";
-import OfferList from "../components/OfferList";
 import {getUserInquiries} from "../services/inquiryService";
 import MyInquiryList from "../components/MyInquiryList";
 

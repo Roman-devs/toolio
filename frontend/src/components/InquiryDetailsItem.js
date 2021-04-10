@@ -1,8 +1,6 @@
 import styled from "styled-components/macro";
 import {
-    CardButton,
     CardImage,
-    CardWrapper,
     ProductDescription,
     ProductDimension,
     ProductDimensionsWrapper, ProductName

@@ -5,7 +5,6 @@ import {useAuth} from "../auth/AuthContext";
 import {loginUser} from "../services/loginService";
 import {Redirect} from "react-router-dom";
 import styled from "styled-components/macro";
-import GlobalStyles from "../styling/GlobalStyles";
 
 export default function Login (){
     const {register, handleSubmit, errors} = useForm();
