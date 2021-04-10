@@ -5,6 +5,7 @@ export const CardWrapper = styled.div`
   padding: 0 0 25px;
   margin: 10px;
   width: 300px;
+  height: 450px;
   font-family: "Courier New", arial, sans-serif;
   border-radius: 15px;
   box-shadow: 0 0 20px darkgrey;
@@ -31,22 +32,20 @@ export const ProductName = styled.div`
   padding-right: 25px;
   padding-left: 25px;
   text-align: center;
-  font-size: 0.85em;
-  line-height: 100%;
+  line-height: 135%;
 `
 export const ProductDescription = styled.div`
   padding-top: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 45px;
+  height: 50px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   text-align: center;
   padding-right: 25px;
   padding-left: 25px;
-  max-height: 100px;
-  font-size: 0.85em;
+  font-size: 1em;
   line-height: 85%;
 `
 
@@ -83,7 +82,10 @@ export const ProductDimension = styled.div`
 `
 
 export const CardButton = styled.button`
-  
+  position: absolute;
+  bottom:1rem;
+  right: 6.25rem;
+  left: 6.25rem;
   display: inline-block;
   padding: 12px;
   margin: 5px;

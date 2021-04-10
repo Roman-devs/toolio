@@ -17,6 +17,7 @@ import {ContentWrapper} from "./styling/ContentWrapper.styled";
 import {GlobalWrapper} from "./styling/GlobalWrapper.styled";
 import BurgerMenu from "./components/BurgerMenu";
 import MyInquiryDetails from "./pages/MyInquiryDetails";
+import MyOffers from "./pages/MyOffers";
 
 
 function App() {
@@ -40,9 +41,6 @@ function App() {
                             <ProtectedRoute exact path="/myinquiries">
                                 <MyInquiriyOverview/>
                             </ProtectedRoute>
-                            <ProtectedRoute exact path="/madeoffers">
-                                {/*<MadeOfferOverview/> //TODO: Everything  */}
-                            </ProtectedRoute>
                             <ProtectedRoute exact path="/inquiryDetails/:inquiryPartId">
                                 <InquiryDetails/>
                             </ProtectedRoute>
@@ -51,6 +49,9 @@ function App() {
                             </ProtectedRoute>
                             <ProtectedRoute exact path="/inquiryDetails/makeOffer/:inquiryPartId">
                                 <CreateOffer/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/myoffers">
+                                <MyOffers/>
                             </ProtectedRoute>
                             <ProtectedRoute exact path="/">
                                 <InquiryOverview/>

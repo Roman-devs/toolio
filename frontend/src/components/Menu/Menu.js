@@ -43,6 +43,9 @@ const Menu = ({open}) => {
                 <Link to="/myinquiries">
                     <span aria-label="received Offers">My Inquiries</span>
                 </Link>
+                <Link to="/myoffers">
+                    <span aria-label="My Offers">My Offers</span>
+                </Link>
             </MenuCategory>
             <ContainerLogout>
                 <CardButton onClick={handleLogout}>

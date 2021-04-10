@@ -7,7 +7,7 @@ import {
     ProductDimension,
     ProductDimensionsWrapper,
     ProductName
-} from "../../styling/CardStyling";
+} from "../styling/CardStyling";
 
 export default function MyInquiryDetailsItem({inquiry, makeOffer}) {
 

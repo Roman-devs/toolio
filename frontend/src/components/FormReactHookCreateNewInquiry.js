@@ -23,7 +23,8 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
                 <label>Product Name</label>
                 <input name="partName"
                        ref={register({
-                           required: true
+                           required: true,
+                           maxLength: "18"
                        })}/>
                 {errors.partName && <p className="error">Please specify a name for your part</p>}
 
