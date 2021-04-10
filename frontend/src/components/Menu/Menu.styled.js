@@ -1,22 +1,25 @@
 import styled from 'styled-components/macro';
 
 export const StyledMenu = styled.nav`
+  position: absolute;
   transform: ${({open}) => open ? 'translateX(0)' : 'translateX(-100%)'};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background: whitesmoke;
-  height: 100vh;
+  height: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: fit-content;
   text-align: left;
-  padding: 2rem;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
-  border-radius: 2.5px;
+  border-radius: 1.0rem;
   box-shadow: 0 0 20px darkgrey;
-  
- a {
+
+  a {
     font-size: 1rem;
     font-family: "Courier New", arial, sans-serif;
     padding: 1rem 0;
@@ -35,9 +38,8 @@ export const StyledMenu = styled.nav`
 export const MenuCategory = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   background: whitesmoke;
-  margin-top: 2rem;
+  margin-top: 5rem;
 `
 
 export const MenuHeader = styled.div`
@@ -49,4 +51,9 @@ export const MenuHeader = styled.div`
   font-size: xx-large;
   font-weight: bolder;
   font-family: "Courier New", arial, sans-serif;
+`
+
+export const ContainerLogout = styled.div`
+  align-self: center;
+  padding-top: 12rem;
 `

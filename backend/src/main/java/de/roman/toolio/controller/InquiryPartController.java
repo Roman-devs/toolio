@@ -29,7 +29,12 @@ public class InquiryPartController {
 
     @GetMapping("{id}")
     public InquiryPart getInquiryById(@PathVariable String id){
-        return inquiryPartService.getInquiryById(id);
+        return inquiryPartService.getInquiryById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
+    }
+
+    @GetMapping("userinquiries")
+    public List<InquiryPart> listUserInquiryParts(Authentication authentication) {
+        return inquiryPartService.listUserInquiryParts(authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
     }
 
     @PostMapping
@@ -42,3 +47,4 @@ public class InquiryPartController {
         inquiryPartService.deleteInquiryFromDatabase(id);
     }
 }
+

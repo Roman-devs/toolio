@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 export const CardWrapper = styled.div`
-  overflow: hidden;
+  position: relative;
   padding: 0 0 25px;
   margin: 10px;
   width: 300px;
@@ -10,6 +10,7 @@ export const CardWrapper = styled.div`
   box-shadow: 0 0 20px darkgrey;
   text-align: center;
   background: white;
+  z-index: 0;
 `;
 
 export const CardImage = styled.div`
@@ -19,7 +20,7 @@ export const CardImage = styled.div`
   img{
     max-width:100%;
     max-height: 100%;
-    opacity: 0.7;
+    //opacity: 0.7;
     object-fit: contain;
     padding-bottom: 25px;
   }
@@ -31,7 +32,7 @@ export const ProductName = styled.div`
   padding-left: 25px;
   text-align: center;
   font-size: 0.85em;
-  line-height: 85%;
+  line-height: 100%;
 `
 export const ProductDescription = styled.div`
   padding-top: 15px;
@@ -82,6 +83,7 @@ export const ProductDimension = styled.div`
 `
 
 export const CardButton = styled.button`
+  
   display: inline-block;
   padding: 12px;
   margin: 5px;

@@ -10,9 +10,10 @@ import InquiryDetailsItem from "../components/InquiryDetailsItem";
 import OfferList from "../components/OfferList";
 import {getAllReceivedOffersByAuth} from "../services/offerService";
 import OfferListFinal from "../components/OfferListFinal";
+import MyInquiryDetailsItem from "../components/Menu/MyInquiriyDetailsItem";
 
 
-export default function InquiryDetails() {
+export default function MyInquiryDetails() {
     const [inquiry, setInquiry] = useState("")
     const {inquiryPartId} = useParams();
 
@@ -24,7 +25,7 @@ export default function InquiryDetails() {
 
     return (
         <>
-            {inquiry && <InquiryDetailsItem inquiry={inquiry} makeOffer={false}/>}
+            {inquiry && <MyInquiryDetailsItem inquiry={inquiry} makeOffer={false}/>}
             <OfferListFinal/>
         </>
     )

@@ -9,10 +9,10 @@ import styled from "styled-components/macro";
 import {bool} from "prop-types";
 import Menu from "./Menu";
 
-export default function InquiryCard({inquiry}) {
+export default function MyInquiryCard({inquiry}) {
     const [badge, setBadge] = useState();
 
-     useEffect(() => {
+    useEffect(() => {
         if (inquiry.matchedOffers.length) {
             setBadge(inquiry.matchedOffers.length)
         } return null
@@ -56,7 +56,7 @@ export default function InquiryCard({inquiry}) {
                 </ProductDimension>
             </ProductDimensionsWrapper>
             <ProductDimensionsWrapper>
-                <Link to={`/inquiryDetails/${inquiry.uuid}`}>
+                <Link to={`/myinquiryDetails/${inquiry.uuid}`}>
                     <CardButton>Details</CardButton>
                 </Link>
             </ProductDimensionsWrapper>

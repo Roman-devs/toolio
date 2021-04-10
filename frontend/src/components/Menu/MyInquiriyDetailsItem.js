@@ -1,15 +1,15 @@
 import styled from "styled-components/macro";
+
+import {Link} from "react-router-dom";
 import {
-    CardButton,
     CardImage,
-    CardWrapper,
     ProductDescription,
     ProductDimension,
-    ProductDimensionsWrapper, ProductName
-} from "../styling/CardStyling";
-import {Link} from "react-router-dom";
+    ProductDimensionsWrapper,
+    ProductName
+} from "../../styling/CardStyling";
 
-export default function InquiryDetailsItem({inquiry, makeOffer}) {
+export default function MyInquiryDetailsItem({inquiry, makeOffer}) {
 
 
 
@@ -44,8 +44,7 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
                     <h1>Height [mm]</h1>
                     <p>{inquiry.height}</p>
                 </ProductDimension>
-            </ProductDimensionsWrapper>
-            <ProductDimensionsWrapper>
+
                 <ProductDimension>
                     <h1>Material</h1>
                     <p>{inquiry.material}</p>
@@ -69,15 +68,10 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
                     {inquiry.latestDate}
                 </ProductDimension>
             </ProductDimensionsWrapper>
-            {makeOffer &&
-            <Link to={`/inquiryDetails/${inquiry.uuid}`}>
+            {!makeOffer &&
+            <Link to={`/myinquiries`}>
                 <CardButtonInquiry> Back </CardButtonInquiry>
             </Link>}
-            {!makeOffer &&
-                <Link to={`/inquiryDetails/makeOffer/${inquiry.uuid}`}>
-                    <CardButtonInquiry> Make An Offer! </CardButtonInquiry>
-                </Link>
-                }
 
 
 

@@ -1,31 +1,27 @@
 import {useState, useEffect} from "react";
-import {getAllOffersByAuth} from "../services/offerService";
+import {getAllReceivedOffersByAuth} from "../services/offerService";
 import BurgerMenu from "../components/BurgerMenu";
 import TopBar from "../components/TopBar";
 import InquiryList from "../components/InquiryList";
 import styled from "styled-components/macro";
 import OfferList from "../components/OfferList";
+import {getUserInquiries} from "../services/inquiryService";
+import MyInquiryList from "../components/MyInquiryList";
 
-export default function OfferOverview(){
+export default function MyInquiriyOverview(){
     const [offers, setOffers] = useState([])
+    const [inquiries, setInquiries] = useState([])
 
     useEffect(()=> {
-        getAllOffersByAuth()
-            .then(setOffers)
+        getAllReceivedOffersByAuth()
+            .then(setOffers);
+        getUserInquiries()
+            .then(setInquiries);
     },[])
 
     return(
         <>
-            <PageLayoutContainer>
-                <BurgerMenu/>
-                <Content>
-                    <TopBar/>
-                    <OfferContainer>
-                        {offers && <OfferList offers={offers}/>}
-                    </OfferContainer>
-                </Content>
-                {/*<FormReactHookCreateNewInquiry onAdd={addNewInquiry}/>*/}
-            </PageLayoutContainer>
+            {inquiries && offers && <MyInquiryList inquiries={inquiries} offers={offers} makeOffer={false}/>}
         </>
     )
 }

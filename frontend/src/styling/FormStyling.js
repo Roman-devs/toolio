@@ -2,14 +2,43 @@ import styled from "styled-components/macro";
 
 export const Styles = styled.div`
   background: whitesmoke;
-  padding: 20px;
+  padding: 2rem;
+  width: 100%;
   font-family: "Courier New", arial, sans-serif;
-  text-align: center;
+  box-sizing: border-box;
+  overflow-y: scroll;
+align-self: center;
+
+  .warningSign{
+    max-width:3%;
+    height:auto;
+  }
+  
+  .error{
+    text-align: center;
+    align-self: center;
+    color: red;
+  }
+  
   .offerDescription{
-    line-height: 10rem;
+    line-height: 1rem;
+    height: 4rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
   }
   .partDescription{
-    line-height: 10rem;
+    line-height: 1rem;
+    height: 4rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
   }
   label{
     padding-top: 15px;
@@ -30,7 +59,7 @@ export const Styles = styled.div`
     justify-content: space-around;
     margin: 0 auto;
     max-width: 500px;
-    padding: 30px 50px;
+    padding: 30px 30px;
     text-align: center;
   }
 
@@ -41,7 +70,9 @@ export const Styles = styled.div`
     padding: 10px;
     width: 100%;
     text-align: center;
-    
+    textarea{
+      
+    }
   }
 
   label {
@@ -52,12 +83,14 @@ export const Styles = styled.div`
     margin-bottom: 5px;
   }
 
-  .error {
+  .errors {
     color: red;
     font-size: 12px;
     height: 30px;
   }
-
+  .dimension{
+   
+  }
   .submitButton {
     //background-color: #6976d9;
     //color: white;
@@ -80,7 +113,6 @@ export const Styles = styled.div`
       box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
       transform: translate(0, -1px);
     }
-    
-    
+
   }
 `;

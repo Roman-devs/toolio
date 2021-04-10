@@ -14,11 +14,15 @@ export default function Login (){
 
     const onSubmit =  (loginData) => {
         console.log(loginData)
+        sessionStorage.setItem("user", loginData.username);
         loginUser(loginData)
             .then(setToken)
-            .catch(() => setFetchError("Wrong credentials!"))
+            .catch(() => {setFetchError("Wrong credentials!");
+                sessionStorage.setItem("user", null)
+            })
     }
     if (token) {
+
         return <Redirect to="/" />
     }
 

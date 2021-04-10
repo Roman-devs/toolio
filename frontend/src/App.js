@@ -13,35 +13,58 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import CreateOfferForm from "./components/CreateOfferForm";
 import CreateOffer from "./pages/CreateOffer";
-import OfferOverview from "./pages/OfferOverview";
+import OfferOverview from "./pages/MyInquiriyOverview";
+import MyInquiriyOverview from "./pages/MyInquiriyOverview";
+import {Nav} from "./styling/NavSideBarStyling";
+import NavSideBar from "./components/NavSideBar";
+import {ContentWrapper} from "./styling/ContentWrapper.styled";
+import {GlobalWrapper} from "./styling/GlobalWrapper.styled";
+import BurgerMenu from "./components/BurgerMenu";
+import MyInquiryDetails from "./pages/MyInquiryDetails";
 
 
 function App() {
     return (
         <AuthProvider>
             <GlobalStyle/>
-            <Router>
-                <Switch>
-                    <Route exact path="/login">
-                        <Login/>
-                    </Route>
-                    <ProtectedRoute exact path="/newInquiry">
-                        <CreateNewInquiry />
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/myreceivedoffers">
-                        <OfferOverview/>
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/inquiryDetails/:inquiryPartId">
-                        <InquiryDetails/>
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/inquiryDetails/makeOffer/:inquiryPartId">
-                        <CreateOffer/>
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/">
-                        <InquiryOverview/>
-                    </ProtectedRoute>
-                </Switch>
-            </Router>
+
+            <GlobalWrapper>
+
+                    {/*Content Wrapper kriegt flex direction Row*/}
+                    <Router>
+                        <BurgerMenu/>
+                        <ContentWrapper>
+                        <Switch>
+                            <Route exact path="/login">
+                                <Login/>
+                            </Route>
+                            <ProtectedRoute exact path="/newInquiry">
+                                <CreateNewInquiry/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/myinquiries">
+                                <MyInquiriyOverview/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/madeoffers">
+                                {/*<MadeOfferOverview/> //TODO: Everything  */}
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/inquiryDetails/:inquiryPartId">
+                                <InquiryDetails/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/myinquiryDetails/:inquiryPartId">
+                                <MyInquiryDetails/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/inquiryDetails/makeOffer/:inquiryPartId">
+                                <CreateOffer/>
+                            </ProtectedRoute>
+                            <ProtectedRoute exact path="/">
+                                <InquiryOverview/>
+                            </ProtectedRoute>
+                        </Switch>
+                        </ContentWrapper>
+                    </Router>
+
+            </GlobalWrapper>
+
         </AuthProvider>
     );
 }
