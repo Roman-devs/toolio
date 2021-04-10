@@ -38,9 +38,8 @@ export const StyledMenu = styled.nav`
 export const MenuCategory = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   background: whitesmoke;
-  margin-top: 2rem;
+  margin-top: 5rem;
 `
 
 export const MenuHeader = styled.div`
@@ -55,5 +54,6 @@ export const MenuHeader = styled.div`
 `
 
 export const ContainerLogout = styled.div`
-  padding-top: 10rem;
+  align-self: center;
+  padding-top: 12rem;
 `

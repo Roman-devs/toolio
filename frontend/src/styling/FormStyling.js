@@ -21,7 +21,14 @@ align-self: center;
   }
   
   .offerDescription{
-    line-height: 10rem;
+    line-height: 1rem;
+    height: 4rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
   }
   .partDescription{
     line-height: 1rem;

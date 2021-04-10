@@ -1,17 +1,24 @@
 import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu, MenuCategory, MenuHeader, ContainerLogout} from './Menu.styled';
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {CardButton} from "../../styling/CardStyling";
+import {postUserNameByUserId} from "../../services/offerService";
+import {useState, useEffect} from "react";
 
 const Menu = ({open}) => {
-    let history = useHistory()
+    // const [loggedInUser, setLoggedInUser] = useState()
+    //
 
     const handleLogout = () => {
         sessionStorage.setItem("toolio","");
+        sessionStorage.setItem("user", "");
         window.location.reload()}
 
-
+    // useEffect(()=>{
+    //     console.log(offer)
+    //     postUserNameByUserId(offer).then(setLoggedInUser)
+    // },[offer])
     return (
         <StyledMenu open={open}>
             <MenuHeader>
@@ -32,6 +39,9 @@ const Menu = ({open}) => {
                 {/*</Link>*/}
                 <Link to="/newInquiry">
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
+                </Link>
+                <Link to="/myinquiries">
+                    <span aria-label="received Offers">My Inquiries</span>
                 </Link>
             </MenuCategory>
             <ContainerLogout>

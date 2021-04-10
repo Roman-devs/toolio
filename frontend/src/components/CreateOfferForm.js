@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import {Styles} from "../styling/FormStyling";
 import {getAllOffers, postOffer} from "../services/offerService";
 import React, {useEffect, useState} from "react";
-import { useHistory, Link, Redirect, Route} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import moment from "moment";
 import {useParams} from "react-router-dom";
 
@@ -39,7 +39,7 @@ export default function CreateOfferForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1> Make an Offer </h1>
                 <label> Please specify your Offer with a short message: </label>
-                <input className="offerDescription"
+                <textarea className="offerDescription"
                        name="offerDescription"
                        ref={register({
                            required: true,

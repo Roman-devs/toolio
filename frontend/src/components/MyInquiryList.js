@@ -1,8 +1,9 @@
 import InquiryCard from "./InquiryCard";
 import {useEffect, useState} from "react";
 import styled from "styled-components/macro";
+import MyInquiryCard from "./MyInquiryCard";
 
-export default function InquiryList({inquiries, offers, makeOffer}) {
+export default function MyInquiryList({inquiries, offers, makeOffer}) {
     const [list, setList] = useState();
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function InquiryList({inquiries, offers, makeOffer}) {
         <StyledList>
             {inquiries && list && offers && list.map((inquiry) =>
                 <li key={inquiry.uuid}>
-                    <InquiryCard inquiry={inquiry}/>
+                    <MyInquiryCard inquiry={inquiry}/>
                 </li>
             )}
         </StyledList>

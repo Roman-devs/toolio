@@ -6,8 +6,9 @@ import InquiryList from "../components/InquiryList";
 import styled from "styled-components/macro";
 import OfferList from "../components/OfferList";
 import {getUserInquiries} from "../services/inquiryService";
+import MyInquiryList from "../components/MyInquiryList";
 
-export default function ReceivedOfferOverview(){
+export default function MyInquiriyOverview(){
     const [offers, setOffers] = useState([])
     const [inquiries, setInquiries] = useState([])
 
@@ -20,7 +21,7 @@ export default function ReceivedOfferOverview(){
 
     return(
         <>
-            {offers && inquiries && <OfferList offers={offers} inquiries={inquiries}/>}
+            {inquiries && offers && <MyInquiryList inquiries={inquiries} offers={offers} makeOffer={false}/>}
         </>
     )
 }
