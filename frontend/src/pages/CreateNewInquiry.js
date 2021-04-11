@@ -2,11 +2,9 @@ import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewI
 import {getInquiries, postInquiry} from "../services/inquiryService";
 import React, {useEffect, useState} from "react";
 import styled from "styled-components/macro";
-import {useHistory} from "react-router-dom";
 
 export default function CreateNewInquiry() {
     const [inquiries, setInquiries] = useState([])
-    let {history} = useHistory()
 
     useEffect(() => {
         getInquiries()
@@ -21,7 +19,6 @@ export default function CreateNewInquiry() {
                 setInquiries(updatedInquiries);
             }).catch((error) => console.error(error))
             alert("Your Inquiry has been posted to the overview")
-            history.push("/")
     }
 
     return (

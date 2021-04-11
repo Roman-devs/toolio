@@ -87,7 +87,7 @@ export default function InquiryDetailsItem({inquiry, makeOffer}) {
 export const CardDetailsWrapper = styled.div`
   overflow: hidden;
   align-self: center;
-  height: 600px;
+  height: 650px;
   margin: 5rem;
   width: 700px;
   font-family: "Courier New", arial, sans-serif;

@@ -2,17 +2,15 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import moment from 'moment'
 import {Styles} from "../styling/FormStyling";
-import {useHistory, Link, Redirect, Route} from "react-router-dom";
 import styled from 'styled-components/macro';
+import {useHistory} from "react-router-dom";
 
 export default function FormReactHookCreateNewInquiry({onAdd}) {
     const {register, handleSubmit, errors} = useForm();
-    let history = useHistory();
 
     const onSubmit = newInquiry => {
         console.log(newInquiry)
         onAdd(newInquiry);
-        history.push("/")
     }
 
     return (
@@ -57,7 +55,7 @@ export default function FormReactHookCreateNewInquiry({onAdd}) {
 
                     </div>
                     <div>
-                        {errors.length && <p className="error"></p>}
+                        {errors.length && <p className="error">""</p>}
                         <p className="error">{errors.width && errors.height && errors.length && "Please specify all dimensions"}</p>
                         <p className="error">{errors.height && ""}</p>
                     </div>
