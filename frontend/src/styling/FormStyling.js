@@ -7,12 +7,7 @@ export const Styles = styled.div`
   font-family: "Courier New", arial, sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
-align-self: center;
-
-  .warningSign{
-    max-width:3%;
-    height:auto;
-  }
+  align-self: center;
   
   .error{
     text-align: center;

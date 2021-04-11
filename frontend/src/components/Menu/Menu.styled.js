@@ -19,6 +19,11 @@ export const StyledMenu = styled.nav`
   border-radius: 1.0rem;
   box-shadow: 0 0 20px darkgrey;
 
+  .loggedUser {
+    color: #59b01e;
+    font-weight: bolder;
+  }
+
   a {
     font-size: 1rem;
     font-family: "Courier New", arial, sans-serif;
@@ -39,7 +44,7 @@ export const MenuCategory = styled.div`
   display: flex;
   flex-direction: column;
   background: whitesmoke;
-  margin-top: 5rem;
+  margin-top: 4rem;
 `
 
 export const MenuHeader = styled.div`
@@ -51,9 +56,10 @@ export const MenuHeader = styled.div`
   font-size: xx-large;
   font-weight: bolder;
   font-family: "Courier New", arial, sans-serif;
+  
 `
 
 export const ContainerLogout = styled.div`
   align-self: center;
-  padding-top: 12rem;
+  padding-top: 8rem;
 `

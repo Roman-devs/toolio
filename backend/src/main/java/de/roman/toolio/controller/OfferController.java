@@ -43,7 +43,7 @@ public class OfferController {
         return offerService.getReceivedOffersByUserAuth(authentication.getName());
     }
 
-    @GetMapping("madeOffers")
+    @GetMapping("madeoffers")
     public List<Offer> getMadeOffersByJwtAuth(Authentication authentication){
         return offerService.getMadeOffersByUserAuth(authentication.getName());
     }
