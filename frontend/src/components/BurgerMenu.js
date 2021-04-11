@@ -7,12 +7,17 @@ import Menu from "./Menu";
 export default function BurgerMenu() {
     const [open, setOpen] = useState(false)
     const node = useRef();
+    const [loggedIn, setLoggedIn] = useState()
+
     useOnClickOutside(node, () => setOpen(false))
 
+    useEffect(()=> {
+        setLoggedIn(sessionStorage.getItem("user"))
+    })
     return (
         <MenuSpaceFolded ref={node}>
             <Burger open={open} setOpen={setOpen} />
-            <Menu open={open} setOpen={setOpen} />
+            <Menu open={open} setOpen={setOpen} loggedUser={loggedIn}/>
         </MenuSpaceFolded>
     )
 }

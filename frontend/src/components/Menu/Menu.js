@@ -1,13 +1,13 @@
 import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu, MenuCategory, MenuHeader, ContainerLogout} from './Menu.styled';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {CardButton} from "../../styling/CardStyling";
 import {postUserNameByUserId} from "../../services/offerService";
 import {useState, useEffect} from "react";
 import styled from "styled-components/macro";
 
-const Menu = ({open}) => {
+const Menu = ({open, loggedUser}) => {
     // const [loggedInUser, setLoggedInUser] = useState()
     //
 
@@ -23,12 +23,16 @@ const Menu = ({open}) => {
     return (
         <StyledMenu open={open}>
             <MenuHeader>
-                Hi Roman!
+                Hi <p className="loggedUser">{loggedUser}!</p>
             </MenuHeader>
             <MenuCategory>
-                <Link to="/">
+                <NavLink exact to="/"
+                         activeStyle={{
+                             fontWeight: "bold",
+                             color: "#0031ff"
+                         }}>
                     <span aria-label="Show All Inquiries">All Inquiries</span>
-                </Link>
+                </NavLink>
                 {/*<Link>*/}
                 {/*    <span aria-label="My Inquiries">My Inquiries</span>*/}
                 {/*</Link>*/}
@@ -38,15 +42,27 @@ const Menu = ({open}) => {
                 {/*<Link to="/madeoffers">*/}
                 {/*    <span aria-label="Offers Made">Offers Made</span>*/}
                 {/*</Link>*/}
-                <Link to="/newInquiry">
+                <NavLink exact to="/newInquiry"
+                         activeStyle={{
+                             fontWeight: "bold",
+                             color: "blue"
+                         }}>
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
-                </Link>
-                <Link to="/myinquiries">
+                </NavLink>
+                <NavLink exact to="/myinquiries"
+                         activeStyle={{
+                             fontWeight: "bold",
+                             color: "blue"
+                         }}>
                     <span aria-label="received Offers">My Inquiries</span>
-                </Link>
-                <Link to="/myoffers">
+                </NavLink>
+                <NavLink exact to="/myoffers"
+                         activeStyle={{
+                             fontWeight: "bold",
+                             color: "blue"
+                         }}>
                     <span aria-label="My Offers">My Offers</span>
-                </Link>
+                </NavLink>
             </MenuCategory>
             <ContainerLogout>
                 <MenuButton onClick={handleLogout}>

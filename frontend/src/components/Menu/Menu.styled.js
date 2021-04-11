@@ -19,6 +19,11 @@ export const StyledMenu = styled.nav`
   border-radius: 1.0rem;
   box-shadow: 0 0 20px darkgrey;
 
+  .loggedUser {
+    color: #0031ff;
+    font-weight: bolder;
+  }
+
   a {
     font-size: 1rem;
     font-family: "Courier New", arial, sans-serif;
@@ -51,6 +56,7 @@ export const MenuHeader = styled.div`
   font-size: xx-large;
   font-weight: bolder;
   font-family: "Courier New", arial, sans-serif;
+  
 `
 
 export const ContainerLogout = styled.div`
