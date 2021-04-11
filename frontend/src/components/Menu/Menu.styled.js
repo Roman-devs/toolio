@@ -20,7 +20,7 @@ export const StyledMenu = styled.nav`
   box-shadow: 0 0 20px darkgrey;
 
   .loggedUser {
-    color: #0031ff;
+    color: #59b01e;
     font-weight: bolder;
   }
 

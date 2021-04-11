@@ -4,8 +4,9 @@ import {postUserNameByUserId} from "../services/offerService";
 
 export default function OfferCard({offer, index}) {
     const [offeringUserName, setOfferingUserName] = useState();
+    const [value, setValue] = useState();
 
-    useEffect(()=>{
+        useEffect(() => {
         console.log(offer)
         postUserNameByUserId(offer).then(setOfferingUserName)
     },[offer])
@@ -20,7 +21,7 @@ export default function OfferCard({offer, index}) {
             <OfferGeneralHeadline> Offered Price </OfferGeneralHeadline>
             <OfferFIAT>{offer.offerFIATamount} €</OfferFIAT>
             <OfferGeneralHeadline> Posted By User: </OfferGeneralHeadline>
-            <UserName>{offeringUserName}</UserName>
+            <UserName className={value}>{offeringUserName}</UserName>
         </OfferContainer>
     )
 }
@@ -55,10 +56,19 @@ export const OfferFIAT = styled.div`
 
 export const OfferDate = styled.div`
   font-weight: bold;
+  color: crimson;
 `
 
 export const UserName = styled.div`
-  color: #204ad0;
+  color: #1248b1;
   font-weight: bold;
+
+  .isMe {
+    color: red;
+  }
+
+  .isNotMe {
+    color: #61dafb;
+  }
 `
 

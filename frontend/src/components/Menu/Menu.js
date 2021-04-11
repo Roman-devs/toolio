@@ -29,7 +29,7 @@ const Menu = ({open, loggedUser}) => {
                 <NavLink exact to="/"
                          activeStyle={{
                              fontWeight: "bold",
-                             color: "#0031ff"
+                             color: "#3cc821"
                          }}>
                     <span aria-label="Show All Inquiries">All Inquiries</span>
                 </NavLink>
@@ -45,21 +45,21 @@ const Menu = ({open, loggedUser}) => {
                 <NavLink exact to="/newInquiry"
                          activeStyle={{
                              fontWeight: "bold",
-                             color: "blue"
+                             color: "#3cc821"
                          }}>
                     <span aria-label="Create New Inquiry">Create New Inquiry</span>
                 </NavLink>
                 <NavLink exact to="/myinquiries"
                          activeStyle={{
                              fontWeight: "bold",
-                             color: "blue"
+                             color: "#3cc821"
                          }}>
                     <span aria-label="received Offers">My Inquiries</span>
                 </NavLink>
                 <NavLink exact to="/myoffers"
                          activeStyle={{
                              fontWeight: "bold",
-                             color: "blue"
+                             color: "#3cc821"
                          }}>
                     <span aria-label="My Offers">My Offers</span>
                 </NavLink>
