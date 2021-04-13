@@ -4,7 +4,6 @@ import {postUserNameByUserId} from "../services/offerService";
 
 export default function OfferCard({offer, index}) {
     const [offeringUserName, setOfferingUserName] = useState();
-    const [value, setValue] = useState();
 
         useEffect(() => {
         console.log(offer)
@@ -21,7 +20,7 @@ export default function OfferCard({offer, index}) {
             <OfferGeneralHeadline> Offered Price </OfferGeneralHeadline>
             <OfferFIAT>{offer.offerFIATamount} €</OfferFIAT>
             <OfferGeneralHeadline> Posted By User: </OfferGeneralHeadline>
-            <UserName className={value}>{offeringUserName}</UserName>
+            <UserName>{offeringUserName}</UserName>
         </OfferContainer>
     )
 }
