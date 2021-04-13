@@ -13,7 +13,7 @@ export default function BurgerMenu() {
 
     useEffect(()=> {
         setLoggedIn(sessionStorage.getItem("user"))
-    })
+    },[setLoggedIn])
     return (
         <MenuSpaceFolded ref={node}>
             <Burger open={open} setOpen={setOpen} />

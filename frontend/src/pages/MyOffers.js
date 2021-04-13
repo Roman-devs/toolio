@@ -17,7 +17,7 @@ export default function MyOffers() {
         getInquiries()
             .then(setInquiries);
         console.log(inquiries)
-    },[])
+    },[setUserOffers, setInquiries])
 
     return (
         <>

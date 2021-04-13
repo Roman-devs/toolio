@@ -1,7 +1,6 @@
 import FormReactHookCreateNewInquiry from "../components/FormReactHookCreateNewInquiry";
 import {getInquiries, postInquiry} from "../services/inquiryService";
 import React, {useEffect, useState} from "react";
-import styled from "styled-components/macro";
 
 export default function CreateNewInquiry() {
     const [inquiries, setInquiries] = useState([])
