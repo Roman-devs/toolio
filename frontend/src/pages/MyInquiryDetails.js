@@ -13,7 +13,7 @@ export default function MyInquiryDetails() {
 
     useEffect(() => {
         getInquiryById(inquiryPartId).then(setInquiry)
-    }, [])
+    }, [inquiryPartId])
 
     return (
         <>
