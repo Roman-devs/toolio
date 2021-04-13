@@ -1,6 +1,6 @@
 import {AuthContext} from './AuthContext'
 import {useState, useEffect} from 'react'
-import axiosConfig from '../services/axiosConfig'
+import * as axiosConfig from "../services/axiosConfig";
 import decode from 'jwt-decode'
 
 export default function AuthProvider({children}) {

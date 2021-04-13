@@ -18,13 +18,13 @@ export default function OfferListFinal() {
         getInquiryById(inquiryPartId)
             .then(setInquiry)
             .catch((error) => console.error(error))
-    }, [])
+    }, [inquiryPartId])
 
     useEffect(() => {
         const matchedOffers = allOffers.filter((offer) => offer.inquiryPartId === inquiryPartId);
         setCorrespondingOffers(matchedOffers);
         // .filter((inquiry) => inquiry.matchedOffers.length) --------- FUER EIGENE FILTERN!!!!
-    }, [inquiry, allOffers]);
+    }, [inquiry, allOffers, inquiryPartId]);
 
     return (
             <OfferListContainer>

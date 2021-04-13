@@ -1,8 +1,4 @@
 import {useEffect, useState} from "react";
-import {getAllOffers} from "../services/offerService";
-import {getInquiryById} from "../services/inquiryService";
-import {useParams} from "react-router-dom";
-import OfferCard from "./OfferCard";
 import styled from 'styled-components/macro'
 import MyInquiryCard from "./MyInquiryCard";
 
