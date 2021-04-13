@@ -3,7 +3,6 @@ import {useForm} from "react-hook-form";
 import moment from 'moment'
 import {Styles} from "../styling/FormStyling";
 import styled from 'styled-components/macro';
-import {useHistory} from "react-router-dom";
 
 export default function FormReactHookCreateNewInquiry({onAdd}) {
     const {register, handleSubmit, errors} = useForm();

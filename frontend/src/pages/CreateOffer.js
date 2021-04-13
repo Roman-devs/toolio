@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
 import {getInquiryById} from "../services/inquiryService";
 import CreateOfferForm from "../components/CreateOfferForm";

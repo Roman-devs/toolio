@@ -1,13 +1,11 @@
 import {getInquiries} from "../services/inquiryService";
 import React, {useEffect, useState} from 'react'
 import InquiryList from "../components/InquiryList";
-import {useAuth} from "../auth/AuthContext";
 import {getAllOffers} from "../services/offerService";
 
 export default function InquiryOverview() {
     const [inquiries, setInquiries] = useState([])
     const [offers, setOffers] = useState([])
-    const{ token } = useAuth();
 
     useEffect(() => {
         getAllOffers()

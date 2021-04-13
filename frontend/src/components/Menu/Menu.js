@@ -1,25 +1,16 @@
 import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu, MenuCategory, MenuHeader, ContainerLogout} from './Menu.styled';
-import {Link, NavLink} from "react-router-dom";
-import {CardButton} from "../../styling/CardStyling";
-import {postUserNameByUserId} from "../../services/offerService";
-import {useState, useEffect} from "react";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components/macro";
 
 const Menu = ({open, loggedUser}) => {
-    // const [loggedInUser, setLoggedInUser] = useState()
-    //
 
     const handleLogout = () => {
         sessionStorage.setItem("toolio","");
         sessionStorage.setItem("user", "");
         window.location.reload()}
 
-    // useEffect(()=>{
-    //     console.log(offer)
-    //     postUserNameByUserId(offer).then(setLoggedInUser)
-    // },[offer])
     return (
         <StyledMenu open={open}>
             <MenuHeader>
