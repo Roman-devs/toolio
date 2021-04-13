@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react";
 import {getAllReceivedOffersByAuth} from "../services/offerService";
-import styled from "styled-components/macro";
 import {getUserInquiries} from "../services/inquiryService";
 import MyInquiryList from "../components/MyInquiryList";
 

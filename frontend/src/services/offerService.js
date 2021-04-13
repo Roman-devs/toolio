@@ -1,5 +1,5 @@
 import axios from 'axios'
-import axiosConfig from "./axiosConfig";
+import * as axiosConfig from "./axiosConfig";
 
 const offerUrl = "/offers"
 const byAuth = "receivedoffers"
