@@ -21,23 +21,3 @@ export default function MyInquiriyOverview(){
         </>
     )
 }
-
-const PageLayoutContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  overflow: hidden;
-  background-color: whitesmoke;
-`
-
-const OfferContainer = styled.div`
-  overflow-y: scroll;
-`
-
-const Content = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`
