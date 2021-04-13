@@ -17,7 +17,7 @@ export default function MyOffers() {
         getInquiries()
             .then(setInquiries);
         console.log(inquiries)
-        // eslint-disable-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     },[])
 
     return (
