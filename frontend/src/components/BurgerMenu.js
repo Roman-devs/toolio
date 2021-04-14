@@ -13,7 +13,9 @@ export default function BurgerMenu() {
 
     useEffect(()=> {
         setLoggedIn(sessionStorage.getItem("user"))
-    },[setLoggedIn])
+        // eslint-disable-next-line
+    },[])
+
     return (
         <MenuSpaceFolded ref={node}>
             <Burger open={open} setOpen={setOpen} />
