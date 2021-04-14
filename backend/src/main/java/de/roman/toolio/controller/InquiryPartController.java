@@ -27,12 +27,12 @@ public class InquiryPartController {
         return inquiryPartService.listInquiryParts();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public InquiryPart getInquiryById(@PathVariable String id){
         return inquiryPartService.getInquiryById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
     }
 
-    @GetMapping("userinquiries")
+    @GetMapping("/userinquiries")
     public List<InquiryPart> listUserInquiryParts(Authentication authentication) {
         return inquiryPartService.listUserInquiryParts(authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
     }
@@ -42,7 +42,7 @@ public class InquiryPartController {
         return this.inquiryPartService.addInquiry(inquiryPartToBeAdded, authentication.getName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "user not found"));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteInquiry(@PathVariable String id){
         inquiryPartService.deleteInquiryFromDatabase(id);
     }

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
@@ -29,7 +29,7 @@ public class LoginController {
 
 
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(@RequestBody UserSecurityCredentials userSecurityCredentials){
 
         try {

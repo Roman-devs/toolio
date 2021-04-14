@@ -27,28 +27,28 @@ public class OfferController {
         return offerService.getAllOffersOfDatabase();
     }
 
-    @PostMapping("userids")
+    @PostMapping("/userids")
     public String postAndReceiveUserName (@RequestBody Offer offer){
         return offerService.getUserNameByUserId(offer);
     }
 
 
-    @GetMapping("offer/{offerId}")
+    @GetMapping("/offer/{offerId}")
     public Offer getOfferById(@PathVariable String offerId){
         return offerService.getOfferById(offerId);
     }
 
-    @GetMapping("receivedoffers")
+    @GetMapping("/receivedoffers")
     public List<Offer> getReceivedOffersByJwtAuth(Authentication authentication){
         return offerService.getReceivedOffersByUserAuth(authentication.getName());
     }
 
-    @GetMapping("madeoffers")
+    @GetMapping("/madeoffers")
     public List<Offer> getMadeOffersByJwtAuth(Authentication authentication){
         return offerService.getMadeOffersByUserAuth(authentication.getName());
     }
 
-    @GetMapping("poster/{postingUserId}")
+    @GetMapping("/poster/{postingUserId}")
     public List<Offer> getReceivedOffersByPosterId(@PathVariable String postingUserId){
         return offerService.getReceivedOffersByPostingUserId(postingUserId);
     }
