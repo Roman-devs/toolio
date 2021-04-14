@@ -1,4 +1,4 @@
-package de.roman.toolio.controller;
+package de.roman.toolio.config;
 
 
 import org.springframework.stereotype.Controller;
