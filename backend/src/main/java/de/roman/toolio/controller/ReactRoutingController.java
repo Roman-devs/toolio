@@ -9,7 +9,7 @@ public class ReactRoutingController {
 
         @RequestMapping(value = "/**/{[path:[^\\.]*}")
         public String forwardToRoutUrl() {
-            return "forward:/";
+            return "forward:/auth/login";
         }
 
 }
